@@ -89,6 +89,10 @@ function WeekDay() {
         document.getElementById('weekday'+x).innerHTML = n;
     }
 }
+function slideToSettings(){
+    $('.slide-container').slick("slickGoTo", 0);
+}
+
 // Weekday handler - END
 
 function moveFuture(){

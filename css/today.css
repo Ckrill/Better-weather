@@ -11,7 +11,15 @@
     margin-top: 100px;
 }
 .desktopMode #today{
-    width: 67%;
+    width: 50%;
     float: left;
+}
+#today .settingsIcon{
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    display: none;
 }
 /* Today - END */
