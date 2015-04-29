@@ -1,9 +1,13 @@
 /* Today */
 #today {
-    font-size: 3em;
+    font-size: 38px;
     padding: 20px;
     height: 100%;
     width: 100%;
     position: relative;
+}
+
+.location{
+    margin-top: 100px;
 }
 /* Today - END */

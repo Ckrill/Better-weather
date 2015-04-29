@@ -7,6 +7,7 @@
     border-bottom: 1px solid #3A7BB3;
     display: table;
     width: 100%;
+    font-size: 22px;
 }
 #future .futureDay:last-of-type{
     border-bottom: 0; 
@@ -15,5 +16,8 @@
     display: table-cell;
     vertical-align: middle;
     padding: 20px;
+}
+.valign p{
+    margin: 0;
 }
 /* Future - END*/
