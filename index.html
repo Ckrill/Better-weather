@@ -11,24 +11,39 @@
         <link rel="apple-touch-icon" sizes="120x120" href="img/touch-icon-iphone-retina.png">
         <link rel="apple-touch-icon" sizes="152x152" href="img/touch-icon-ipad-retina.png">
         <link rel="icon" type="image/png" href="img/android-chrome-192x192.png" sizes="192x192">
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script>
+            function include(thisHTML) {
+                $("#" + thisHTML).load(thisHTML + ".html");
+            };
+            $(function(){
+                var arr = $(".include");
+                $.each(arr, function() {
+                    console.log($(this).attr("id"));
+                    pageName = $(this).attr("id");
+                    include(pageName);
+                })
+            });
+        </script>
 	</head>
     <body>
         <div class="wrapper">
             <div class="slide-container">
-                <div class="page utilities">
-                    <div class=""></div>
+                <div class="page settings">
+                    <div id="settings" class="include"></div>
                 </div>
                 <div class="page today">
-                    
+                    <div id="today" class="include"></div>
                 </div>
-                <div class="page next">
-                    
+                <div class="page future">
+                    <div id="future" class="include"></div>
                 </div>
             </div>
+            <div id="bullets" class="include"></div>
         </div>
         
         <!--<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js'></script>-->
-        <script type="text/javascript" src="js/jquery.min.js"></script>
+<!--        <script type="text/javascript" src="js/jquery.min.js"></script>-->
         <script type="text/javascript" src="js/timeCircles.js"></script>
         <script type='text/javascript' src='js/modernizr.js'></script>
         <script type='text/javascript' src='js/fastclick.js'></script>
