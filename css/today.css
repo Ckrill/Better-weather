@@ -21,5 +21,6 @@
     bottom: 10px;
     left: 10px;
     display: none;
+    cursor: pointer;
 }
 /* Today - END */
