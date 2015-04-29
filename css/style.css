@@ -47,6 +47,7 @@ ul#bullets {
     margin: 0 auto .5em auto;
     padding: 0;
     text-align: center;
+    cursor: default;
 }
 #bullets li {
     background-color: white;
@@ -55,6 +56,7 @@ ul#bullets {
     height: 10px;
     opacity: .3;
     width: 10px;
+    cursor: pointer;
 }
 #bullets .active {
     opacity: .7;
