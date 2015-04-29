@@ -6,6 +6,7 @@ body {
     font-family: 'Source Sans Pro', sans-serif;
     padding: 0;
     margin: 0;
+    color: white;
 }
 .wrapper {
     position: absolute;
@@ -18,6 +19,10 @@ body {
 /* General - END */
 
 /* Interface */
+.page > div {
+    padding: 1em;
+    box-sizing: border-box;
+}
 #bullets {
     position: fixed;
     bottom: 0px;
@@ -49,6 +54,10 @@ body {
 /* Today */
 .today {
     background-color: coral;
+    font-size: 3em;
+}
+.today .degrees:after {
+    content: "\00b0";
 }
 /* Today - END */
 
