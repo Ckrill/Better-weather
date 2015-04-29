@@ -1,6 +1,16 @@
 @import url("slick.css");
 
 /* General */
+*{
+    box-sizing: border-box;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
 body {
     font-size: 100%;
     font-family: 'Source Sans Pro', sans-serif;
@@ -22,8 +32,9 @@ body {
 .page > div {
     padding: 1em;
     box-sizing: border-box;
+    height: 100%;
 }
-#bullets {
+#bullets ul {
     position: fixed;
     bottom: 0px;
     left: 0;
@@ -46,23 +57,26 @@ body {
 /* Interface - END */
 
 /* Settings */
-.settings {
+#settings {
     background-color: gold;
 }
 /* Settings - END */
 
 /* Today */
-.today {
+#today {
     background-color: coral;
     font-size: 3em;
+    height: 100%;
+    width: 100%;
+    position: relative;
 }
-.today .degrees:after {
+#today .degrees:after {
     content: "\00b0";
 }
 /* Today - END */
 
 /* Future */
-.future {
+#future {
     background-color: paleturquoise;
 }
 /* Future - END*/
