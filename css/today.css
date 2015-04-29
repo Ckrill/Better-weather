@@ -22,5 +22,10 @@
     left: 10px;
     display: none;
     cursor: pointer;
+    
+    transition: transform 1s;
+}
+#today .settingsIcon:hover {
+    transform: rotate(180deg);
 }
 /* Today - END */

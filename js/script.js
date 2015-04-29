@@ -90,11 +90,13 @@ function WeekDay() {
         document.getElementById('weekday'+x).innerHTML = n;
     }
 }
-function slideToSettings(){
-    $('.slide-container').slick("slickGoTo", 0);
-}
-
 // Weekday handler - END
+
+// Settings button
+$(".settingsIcon").click(function () {
+    $(".slide-container").slick("slickGoTo", 0);
+});
+// Settings button - END
 
 function moveFuture(){
      if ($(window).width() > 750) {
@@ -105,9 +107,8 @@ function moveFuture(){
     else {
         $("#future").appendTo("div[data-slick-index='2']");
         $("body").removeClass("desktopMode");
-
     }
- };
+};
 
 // Ready
 $(document).ready(function () {
@@ -118,7 +119,6 @@ $(document).ready(function () {
     moveFuture();
     parsePosition();
 });
-
 // Ready - END
 
 // Scroll
