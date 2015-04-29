@@ -70,7 +70,7 @@ function insertInHtml(variable, id){
 
 function WeekDay() {
     x=1;
-    for (i = 0; i < 3; i++) { 
+    for (i = 0; i < 2; i++) { 
         var d = new Date();
         var weekday = new Array(7);
         weekday[0] = "Sunday";
