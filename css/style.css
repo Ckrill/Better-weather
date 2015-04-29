@@ -2,6 +2,7 @@
 @import url("settings.css");
 @import url("today.css");
 @import url("future.css");
+@import url("media-queries.css");
 
 /* General */
 *{
