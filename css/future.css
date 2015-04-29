@@ -1,0 +1,18 @@
+/* Future */
+#future {
+
+}
+.futureDay {
+    height: calc(100% / 3);
+    border-bottom: 1px solid #3A7BB3;
+    display: table;
+    width: 100%;
+}
+#future .futureDay:last-of-type{
+    border-bottom: 0; 
+}
+.valign{
+    display: table-cell;
+    vertical-align: middle;
+}
+/* Future - END*/

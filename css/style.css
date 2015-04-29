@@ -1,4 +1,7 @@
 @import url("slick.css");
+@import url("settings.css");
+@import url("today.css");
+@import url("future.css");
 
 /* General */
 *{
@@ -55,37 +58,3 @@ ul#bullets {
     opacity: .7;
 }
 /* Interface - END */
-
-/* Settings */
-#settings {
-}
-/* Settings - END */
-
-/* Today */
-#today {
-    font-size: 3em;
-    padding: 1em;
-    height: 100%;
-    width: 100%;
-    position: relative;
-}
-/* Today - END */
-
-/* Future */
-#future {
-
-}
-.futureDay {
-    height: calc(100% / 3);
-    border-bottom: 1px solid #3A7BB3;
-    display: table;
-    width: 100%;
-}
-#future .futureDay:last-of-type{
-    border-bottom: 0; 
-}
-.valign{
-    display: table-cell;
-    vertical-align: middle;
-}
-/* Future - END*/
