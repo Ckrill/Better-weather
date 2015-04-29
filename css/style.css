@@ -20,7 +20,6 @@ body {
     padding: 0;
     margin: 0;
     color: white;
-    background: #428bca;
 }
 .wrapper {
     position: absolute;
@@ -28,6 +27,9 @@ body {
     width: 100%;
     
     transition: 0.4s -webkit-filter linear;
+}
+.page {
+    background: #428bca;
 }
 
 /* General - END */

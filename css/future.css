@@ -14,5 +14,6 @@
 .valign{
     display: table-cell;
     vertical-align: middle;
+    padding: 20px;
 }
 /* Future - END*/
