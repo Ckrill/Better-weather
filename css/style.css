@@ -59,6 +59,18 @@ ul#bullets {
     width: 10px;
     cursor: pointer;
 }
+#bullets li:first-of-type{
+    background: none;
+    height: 12px;
+    width: 12px;
+    position: relative;
+    top: 1px;
+    left: 1px;
+}
+#bullets li img{
+    width: 100%;
+}
+
 #bullets .active {
     opacity: .7;
 }
