@@ -32,9 +32,8 @@ body {
 /* Interface */
 .page > div {
     box-sizing: border-box;
-    height: 100%;
 }
-#bullets ul {
+ul#bullets {
     position: fixed;
     bottom: 0px;
     left: 0;
