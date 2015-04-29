@@ -70,9 +70,6 @@ body {
     width: 100%;
     position: relative;
 }
-#today .degrees:after {
-    content: "\00b0";
-}
 /* Today - END */
 
 /* Future */
