@@ -1,4 +1,64 @@
 /* Settings */
 #settings {
+    background-color: #181818;
+}
+
+form {
+    padding: 100px;
+}
+.tgl {
+	display: none;
+}
+.tgl, .tgl:after, .tgl:before,
+.tgl *, .tgl *:after, .tgl *:before,
+.tgl + .tgl-btn {
+    box-sizing: border-box;
+}
+.tgl::selection, .tgl:after::selection, .tgl:before::selection,
+.tgl *::selection, .tgl *:after::selection, .tgl *:before::selection,
+.tgl + .tgl-btn::selection {
+    background: none;
+}
+.tgl + .tgl-btn {
+    outline: 0;
+    display: block;
+    width: 4em;
+    height: 2em;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+}
+.tgl + .tgl-btn:after, .tgl + .tgl-btn:before {
+    position: relative;
+    display: block;
+    content: "";
+    width: 50%;
+    height: 100%;
+}
+.tgl + .tgl-btn:after {
+    left: 0;
+}
+.tgl + .tgl-btn:before {
+    display: none;
+}
+.tgl:checked + .tgl-btn:after {
+    left: 50%;
+}
+
+.tgl-btn {
+/*    background: #f0f0f0;*/
+    background-color: #4b4b4b;
+    border-radius: 2em;
+    padding: 2px;
+    transition: all .4s ease;
+}
+.tgl-btn:after {
+        border-radius: 50%;
+        background: #fff;
+        transition: all .2s ease;
+    }
+.tgl-light:checked + .tgl-btn {
+/*    background: #9FD6AE;*/
+    background-color: #71a880;
 }
 /* Settings - END */
