@@ -10,4 +10,8 @@
 .location{
     margin-top: 100px;
 }
+.desktopMode #today{
+    width: 67%;
+    float: left;
+}
 /* Today - END */

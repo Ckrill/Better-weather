@@ -20,4 +20,13 @@
 .valign p{
     margin: 0;
 }
+.desktopMode #future{
+    width: 33%;
+    float: left;
+    border-left: 1px solid #3A7BB3;
+    
+}
+.desktopMode div[data-slick-index="2"]{
+    display: none;
+}
 /* Future - END*/

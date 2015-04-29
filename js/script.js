@@ -68,6 +68,7 @@ function insertInHtml(variable, id){
  };
 //Insert data - END
 
+// Weekday handler
 function WeekDay() {
     x=1;
     for (i = 0; i < 2; i++) { 
@@ -88,7 +89,20 @@ function WeekDay() {
         document.getElementById('weekday'+x).innerHTML = n;
     }
 }
+// Weekday handler - END
 
+function moveFuture(){
+     if ($(window).width() > 750) {
+         $("#future").appendTo("div[data-slick-index='1']");
+         $("body").addClass("desktopMode");
+         $('.slide-container').slick("slickGoTo", 1);
+    }
+    else {
+        $("#future").appendTo("div[data-slick-index='2']");
+        $("body").removeClass("desktopMode");
+
+    }
+ };
 
 // Ready
 $(document).ready(function () {
@@ -96,6 +110,8 @@ $(document).ready(function () {
     setSlideHeight();
     getLocation();
     WeekDay();
+    moveFuture();
+    
 });
 
 // Ready - END
@@ -109,5 +125,7 @@ $(window).scroll(function () {
 // Resize
 $(window).resize(function () {
     setSlideHeight();
+    moveFuture();
 });
 //Resize - END
+
