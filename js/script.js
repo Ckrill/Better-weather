@@ -3,7 +3,16 @@ function initiateSlide() {
     $('.slide-container').slick({
         initialSlide: 1,
         arrows: false,
-        infinite: false
+        infinite: false,
+        swipe: false,
+        responsive: [
+            {
+                breakpoint: 960,
+                settings: {
+                    swipe: true
+                }
+            }
+        ]
     });
 }
 // Initiate slider - END

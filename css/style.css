@@ -61,11 +61,14 @@ ul#bullets {
 }
 #bullets li:first-of-type{
     background: none;
-    height: 12px;
-    width: 12px;
+    height: 14px;
+    width: 14px;
     position: relative;
-    top: 1px;
+    top: 2px;
     left: 1px;
+}
+#bullets li:hover {
+    opacity: 1;
 }
 #bullets li img{
     width: 100%;
