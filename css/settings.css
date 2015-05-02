@@ -1,11 +1,62 @@
 /* Settings */
 #settings {
     background-color: #181818;
+    padding: 20px;
 }
+h1 {
+    text-align: center;
+}
+.setting {
+    font-size: 1rem;
+    height: 2em;
+/*    position: relative;*/
+    padding-right: 20px;
+    margin: 1em 0;
+}
+.setting form {
+    position: relative;
+}
+#settings p {
+    margin: 0;
+    display: inline-block;
+    float: left;
+    line-height: 2em;
+}
+.setting form:before,
+.setting form:after {
+    position: absolute;
+    top: 0;
+    line-height: 2em;
+}
+/* Degree setting */
+.degree form:before {
+    content: "°C";
+    left: -20px;
+}
+.degree form:after {
+    content: "°F";
+    right: -20px;
+}
+/* Degree setting - END */
+
+/* Wind force */
+.wind form:before {
+    content: "Yes";
+    left: -20px;
+}
+.wind form:after {
+    content: "No";
+    right: -20px;
+}
+/* Wind force - END */
 
 form {
-    padding: 100px;
+    display: inline-block;
+    float: right;
+    font-size: 1em;
 }
+
+/* Styled checkboxes */
 .tgl {
 	display: none;
 }
@@ -59,6 +110,8 @@ form {
     }
 .tgl-light:checked + .tgl-btn {
 /*    background: #9FD6AE;*/
-    background-color: #71a880;
+/*    background-color: #71a880;*/
 }
+/* Styled checkboxes - END */
+
 /* Settings - END */
