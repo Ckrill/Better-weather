@@ -57,11 +57,13 @@ function parsePosition(position) {
          winddir = json.data.weather[0].hourly[4].winddirDegree,
          winddirABB = json.data.weather[0].hourly[4].winddir16Point,
          windchill = json.data.weather[0].hourly[4].WindChillC,
+         windspeed = json.data.weather[0].hourly[4].windspeedKmph,
+         windspeed = (windspeed *1000)/3600, // m/s
          uv = json.data.weather[0].uvIndex;
          insertInHtml(location,".location");
          insertInHtml(temp+"°",".degrees");
          function windDir(){
-             $(".winddir .pin").css({
+             $(".pin").css({
                  '-webkit-transform' : 'rotate('+ winddir +'deg)',
                  '-moz-transform' : 'rotate('+ winddir +'deg)',
                  '-ms-transform' : 'rotate('+ winddir +'deg)',
@@ -79,7 +81,16 @@ function parsePosition(position) {
             insertInHtml(windchill,".windChill");
          }
          windChill();
+         
         
+         function windSpeed(){
+            $(".windspeed img").css({
+                 'animation-duration' : (windspeed/8)+'s',
+                 '-webkit-animation-duration' : (windspeed/8)+'s',
+                 }
+             );
+         }
+         windSpeed();
          // 2 day
          var temp2 = json.data.weather[1].maxtempC;
          insertInHtml(temp2+"°","#degrees2");

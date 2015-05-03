@@ -35,6 +35,8 @@
 }
 .optionalInfo div{
     float: right;
+    width: 60px;
+    height: 60px;
 }
 
 .winddir{
@@ -51,7 +53,7 @@
     position: absolute;
     left: 18px;
 }
-.uv{
+.uv{ 
     text-align: center;
     width: 60px;
     height: 60px;
@@ -72,5 +74,24 @@
     display: block;
     font-size: 13px;
 }
+.windspeed {
+    
+}
+.windspeed img{
+    width: 60px;
+    animation: rotate;
+    -webkit-animation: rotate;
+    animation-timing-function: linear;
+    -webkit-animation-timing-function: linear;
+
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+}
+
+
+@-webkit-keyframes rotate{
+  0%   { -webkit-transform: rotate(0deg);}
+  100% { -webkit-transform: rotate(360deg);}
+}  
 
 /* Today - END */
