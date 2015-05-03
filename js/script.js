@@ -59,7 +59,9 @@ function parsePosition(position) {
          windchill = json.data.weather[0].hourly[4].WindChillC,
          windspeed = json.data.weather[0].hourly[4].windspeedKmph,
          windspeed = (windspeed *1000)/3600, // m/s
-         uv = json.data.weather[0].uvIndex;
+         uv = json.data.weather[0].uvIndex,
+         sunrise = json.data.weather[0].astronomy[0].sunrise,
+         sunset = json.data.weather[0].astronomy[0].sunset;
          insertInHtml(location,".location");
          insertInHtml(temp+"°",".degrees");
          function windDir(){
@@ -78,7 +80,7 @@ function parsePosition(position) {
          }
          uxindex();
          function windChill(){
-            insertInHtml(windchill,".windChill");
+            insertInHtml(windchill+"°",".windChill");
          }
          windChill();
          
@@ -91,6 +93,12 @@ function parsePosition(position) {
              );
          }
          windSpeed();
+        
+        
+         function windChill(){
+            insertInHtml(sunrise,".sunrise");
+            insertInHtml(sunset,".sunset");
+         }
          // 2 day
          var temp2 = json.data.weather[1].maxtempC;
          insertInHtml(temp2+"°","#degrees2");

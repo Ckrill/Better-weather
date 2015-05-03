@@ -33,7 +33,7 @@
     bottom: 50px;
     width: 92%; /*   ???   */
 }
-.optionalInfo div{
+.optionalInfo > div{
     float: right;
     width: 60px;
     height: 60px;
@@ -74,9 +74,6 @@
     display: block;
     font-size: 13px;
 }
-.windspeed {
-    
-}
 .windspeed img{
     width: 60px;
     animation: rotate;
@@ -86,6 +83,10 @@
 
     animation-iteration-count: infinite;
     -webkit-animation-iteration-count: infinite;
+}
+.sun div{
+    font-size: 10px;
+    text-align: center;
 }
 
 
