@@ -74,6 +74,10 @@
     display: block;
     font-size: 13px;
 }
+.windspeed {
+    position: relative;
+    color: #2D64A3;
+}
 .windspeed img{
     width: 60px;
     animation: rotate;
@@ -83,6 +87,19 @@
 
     animation-iteration-count: infinite;
     -webkit-animation-iteration-count: infinite;
+}
+.windspeed div,.windspeed span {
+    position: absolute;
+    opacity: 0.3;
+    text-align: center;
+    top: 8px;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.windspeed span {
+    top: 45px;
+    font-size: 10px;
 }
 .sun div{
     font-size: 10px;

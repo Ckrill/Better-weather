@@ -79,6 +79,7 @@ function parsePosition(position) {
             insertInHtml(uv,".uv");
          }
          uxindex();
+        
          function windChill(){
             insertInHtml(windchill+"°",".windChill");
          }
@@ -91,14 +92,16 @@ function parsePosition(position) {
                  '-webkit-animation-duration' : (windspeed/8)+'s',
                  }
              );
+             $(".windspeed div").text(Math.round(windspeed));
          }
          windSpeed();
         
         
-         function windChill(){
+         function sun(){
             insertInHtml(sunrise,".sunrise");
             insertInHtml(sunset,".sunset");
          }
+        sun();
          // 2 day
          var temp2 = json.data.weather[1].maxtempC;
          insertInHtml(temp2+"°","#degrees2");
