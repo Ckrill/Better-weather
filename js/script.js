@@ -80,8 +80,7 @@ function parsePosition(position) {
                  '-moz-transform' : 'rotate('+ winddir +'deg)',
                  '-ms-transform' : 'rotate('+ winddir +'deg)',
                  'transform' : 'rotate('+ winddir +'deg)'
-             }
-             );
+             });
              insertInHtml(winddirABB,".dirABB");
          }
          windDir();
@@ -97,13 +96,8 @@ function parsePosition(position) {
          windChill();
          
         
-         function windSpeed(){
-            $(".windspeed img").css({
-                 'animation-duration' : (8/windspeed)+'s',
-                 '-webkit-animation-duration' : (8/windspeed)+'s',
-                 }
-             );
-             $(".windspeed div").text(Math.round(windspeed));
+         function windSpeed(){ 
+             $('<div class="windspeed"><img src="img/fan_ikkesvg.png" style="animation-duration: '+(8/windspeed)+'s; -webkit-animation-duration: '+(8/windspeed)+'s;"><div>'+Math.round(windspeed)+'</div><span>m/s</span></div>').appendTo(".optionalInfo");
          }
          windSpeed();
         
@@ -112,7 +106,7 @@ function parsePosition(position) {
             insertInHtml(sunrise,".sunrise");
             insertInHtml(sunset,".sunset");
          }
-        sun();
+         sun();
          // 2 day
          var temp2 = json.data.weather[1].maxtempC;
          insertInHtml(temp2+"°","#degrees2");
@@ -157,7 +151,7 @@ function WeekDay() {
 // Weekday handler - END
 
 
-function ToSlide(slideNumb){
+function toSlide(slideNumb){
     $(".slide-container").slick("slickGoTo", slideNumb);
 }
 
