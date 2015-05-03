@@ -80,7 +80,7 @@ function parsePosition(position) {
          windDir();
          
          function uxindex(){
-             $('<div class="uv">'+uv+'</div>').appendTo(".optionalInfo");
+             $('<div class="uv"><img src="img/speedometer.svg"><img src="img/speedometer-pin.svg">'+uv+'</div>').appendTo(".optionalInfo");
          }
          uxindex();
         
