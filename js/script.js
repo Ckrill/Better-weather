@@ -52,17 +52,25 @@ function parsePosition(position) {
          location = cityName+", "+country,
          
          // Today 
-         temp = json.data.weather[0].maxtempC;
+         temp = json.data.weather[0].maxtempC,
          //wind = json.data.weather[0].hourly[4].windspeedKmph;
+         winddir = json.data.weather[0].hourly[4].winddirDegree,
+         winddirABB = json.data.weather[0].hourly[4].winddir16Point
          insertInHtml(location,".location");
-         insertInHtml(temp+"°",".degrees"); 
-         
+         insertInHtml(temp+"°",".degrees");
+         $(".winddir .pin").css({
+             '-webkit-transform' : 'rotate('+ winddir +'deg)',
+             '-moz-transform' : 'rotate('+ winddir +'deg)',
+             '-ms-transform' : 'rotate('+ winddir +'deg)',
+             'transform' : 'rotate('+ winddir +'deg)'}
+         );
+         insertInHtml(winddirABB,".dirABB");
          // 2 day
          var temp2 = json.data.weather[1].maxtempC;
          insertInHtml(temp2+"°","#degrees2");
         
          // 3 day
-         var temp3 = json.data.weather[2].maxtempC;
+         var temp3 = json.data.weather[2].maxtempC; 
          insertInHtml(temp3+"°","#degrees3"); 
          
          var temp4 = json.data.weather[3].maxtempC;

@@ -28,4 +28,28 @@
 #today .settingsIcon:hover {
     transform: rotate(180deg);
 }
+.optionalInfo{
+    position: absolute;
+    bottom: 50px;
+    width: 92%; /*   ???   */
+}
+.optionalInfo div{
+    float: right;
+    
+}
+
+.winddir{
+    position: relative;
+    text-align: center;
+}
+.winddir .pin {
+    position: absolute;
+    top: -11px;
+    padding: 20px;
+}
+.dirABB{
+    font-size: 14px;
+    position: absolute;
+    left: 18px;
+}
 /* Today - END */
