@@ -55,16 +55,31 @@ function parsePosition(position) {
          temp = json.data.weather[0].maxtempC,
          //wind = json.data.weather[0].hourly[4].windspeedKmph;
          winddir = json.data.weather[0].hourly[4].winddirDegree,
-         winddirABB = json.data.weather[0].hourly[4].winddir16Point
+         winddirABB = json.data.weather[0].hourly[4].winddir16Point,
+         windchill = json.data.weather[0].hourly[4].WindChillC,
+         uv = json.data.weather[0].uvIndex;
          insertInHtml(location,".location");
          insertInHtml(temp+"°",".degrees");
-         $(".winddir .pin").css({
-             '-webkit-transform' : 'rotate('+ winddir +'deg)',
-             '-moz-transform' : 'rotate('+ winddir +'deg)',
-             '-ms-transform' : 'rotate('+ winddir +'deg)',
-             'transform' : 'rotate('+ winddir +'deg)'}
-         );
-         insertInHtml(winddirABB,".dirABB");
+         function windDir(){
+             $(".winddir .pin").css({
+                 '-webkit-transform' : 'rotate('+ winddir +'deg)',
+                 '-moz-transform' : 'rotate('+ winddir +'deg)',
+                 '-ms-transform' : 'rotate('+ winddir +'deg)',
+                 'transform' : 'rotate('+ winddir +'deg)'}
+             );
+             insertInHtml(winddirABB,".dirABB");
+         }
+         windDir();
+         
+         function uxindex(){
+            insertInHtml(uv,".uv");
+         }
+         uxindex();
+         function windChill(){
+            insertInHtml(windchill,".windChill");
+         }
+         windChill();
+        
          // 2 day
          var temp2 = json.data.weather[1].maxtempC;
          insertInHtml(temp2+"°","#degrees2");
@@ -76,7 +91,6 @@ function parsePosition(position) {
          var temp4 = json.data.weather[3].maxtempC;
          insertInHtml(temp3+"°","#degrees4");
     });
-
 }
 //Parse position -END
 
