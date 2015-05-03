@@ -75,23 +75,17 @@ function parsePosition(position) {
          insertInHtml(location,".location");
          insertInHtml(temp+"°",".degrees");
          function windDir(){
-             $(".pin").css({
-                 '-webkit-transform' : 'rotate('+ winddir +'deg)',
-                 '-moz-transform' : 'rotate('+ winddir +'deg)',
-                 '-ms-transform' : 'rotate('+ winddir +'deg)',
-                 'transform' : 'rotate('+ winddir +'deg)'
-             });
-             insertInHtml(winddirABB,".dirABB");
+             $('<div class="winddir"><img src="img/winddir.svg"><img class="pin" src="img/pin.svg" style="-webkit-transform: rotate('+ winddir +'deg); -moz-transform: rotate('+ winddir +'deg); -ms-transform: rotate('+ winddir +'deg); transform: rotate('+ winddir +'deg);"><span class="dirABB">'+winddirABB+'</span></div>').appendTo(".optionalInfo");
          }
          windDir();
          
          function uxindex(){
-            insertInHtml(uv,".uv");
+             $('<div class="uv">'+uv+'</div>').appendTo(".optionalInfo");
          }
          uxindex();
         
-         function windChill(){
-            insertInHtml(windchill+"°",".windChill");
+         function windChill(){             
+             $('<div class="windChill">'+windchill+'°</div>').appendTo(".optionalInfo");
          }
          windChill();
          
@@ -103,9 +97,8 @@ function parsePosition(position) {
         
         
          function sun(){
-            insertInHtml(sunrise,".sunrise");
-            insertInHtml(sunset,".sunset");
-         }
+             $('<div class="sun"><img src="img/sunUpDown.svg"><div class="sunrise">'+sunrise+'</div><div class="sunset">'+sunset+'</div></div>').appendTo(".optionalInfo");
+            }
          sun();
          // 2 day
          var temp2 = json.data.weather[1].maxtempC;
