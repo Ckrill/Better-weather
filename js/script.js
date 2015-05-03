@@ -21,7 +21,11 @@ function initiateSlide() {
 function setSlideHeight() {
     var windowHeight = $(window).height();
     console.log(windowHeight);
-    $(".page").css("height", windowHeight + "px");
+    if ($(window).width() > 750) {
+         $(".page").css("height", (windowHeight-50) + "px");
+    }else{
+        $(".page").css("height", (windowHeight) + "px");
+    }
 }
 // Set height of Slider - END
 
@@ -75,7 +79,8 @@ function parsePosition(position) {
                  '-webkit-transform' : 'rotate('+ winddir +'deg)',
                  '-moz-transform' : 'rotate('+ winddir +'deg)',
                  '-ms-transform' : 'rotate('+ winddir +'deg)',
-                 'transform' : 'rotate('+ winddir +'deg)'}
+                 'transform' : 'rotate('+ winddir +'deg)'
+             }
              );
              insertInHtml(winddirABB,".dirABB");
          }
@@ -151,11 +156,10 @@ function WeekDay() {
 }
 // Weekday handler - END
 
-// Settings button
-$(".settingsIcon").click(function () {
-    $(".slide-container").slick("slickGoTo", 0);
-});
-// Settings button - END
+
+function ToSlide(slideNumb){
+    $(".slide-container").slick("slickGoTo", slideNumb);
+}
 
 function moveFuture(){
      if ($(window).width() > 750) {
@@ -175,6 +179,16 @@ $("#searchForm").submit(function(e){
     return false;
 });
 
+function searchBar() {
+    $("#searchIcon").hover(function() {
+        $("#searchInput").addClass("searchActive");
+        $("#searchInput").focus();
+        $( "#searchInput" ).mouseout(function() {
+            $( this ).removeClass("searchActive");
+        });
+    });
+}
+
 // Ready
 $(document).ready(function () {
     initiateSlide();
@@ -182,6 +196,7 @@ $(document).ready(function () {
     parsePosition(); //getLocation();
     WeekDay();
     moveFuture();
+    searchBar();
 });
 // Ready - END
 

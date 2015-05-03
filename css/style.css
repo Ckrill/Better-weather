@@ -75,12 +75,19 @@ ul#bullets {
 
 #searchInput {
     background: white;
+    position: absolute;
+    top: -50px;
+    transition: top .4s ease;
+    z-index: 99;
+    left: 0;
     width: 100%;    
     outline: none;
-    border:none;
-    padding: 15px;
+    border: none;
+    padding: 16px;
     font-size: 16px;
-
+}
+#searchInput.searchActive {
+    top: 0px;
 }
 #submit{
     display: none;

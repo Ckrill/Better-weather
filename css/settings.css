@@ -2,6 +2,7 @@
 #settings {
     background-color: #181818;
     padding: 20px;
+    position: relative;
 }
 h1 {
     text-align: center;
@@ -94,6 +95,15 @@ h1 {
 }
 .tgl:checked + .tgl-btn:after {
     left: 50%;
+}
+
+img.backBtn{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    cursor: pointer;
+    opacity: 0.3;
 }
 
 .tgl-btn {

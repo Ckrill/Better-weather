@@ -5,4 +5,14 @@
     #today  .settingsIcon{
         display: block;
     }
+    #searchIcon{
+        display: none;
+    }
+    #searchInput {
+        position: static!important;
+        
+    }
+    #settings .backBtn {
+        display: block;
+    }
 }
