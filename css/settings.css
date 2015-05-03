@@ -50,7 +50,7 @@ h1 {
 }
 /* Wind force - END */
 
-form {
+#settForm {
     display: inline-block;
     float: right;
     font-size: 1em;

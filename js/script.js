@@ -38,12 +38,18 @@ function setSlideHeight() {
 //Parse position
 function parsePosition(position) {
     var wwo = "http://api.worldweatheronline.com/free/v2/weather.ashx?q=",
-    //lati = position.coords.latitude,
-    //longi = position.coords.longitude,
     mode = "&format=json&num_of_days=4&includelocation=yes",
-    key =  "&key=82594deb029ae9095181418b6edfd", 
-    //url = wwo+ lati+","+longi+mode+key,
-    url = wwo+ 55.654385+","+12.5915103+mode+key;
+    key =  "&key=82594deb029ae9095181418b6edfd";
+    if(position==0){
+        var query = $("#searchInput").val();
+        url = wwo+query+mode+key;
+    }else{
+        var /*lati = position.coords.latitude,
+        longi = position.coords.longitude,
+        url = wwo+ lati+","+longi+mode+key; */
+        url = wwo+ 55.654385+","+12.5915103+mode+key;
+    }
+    //url = wwo+ 55.654385+","+12.5915103+mode+key;
     
     $.getJSON(url, function (json) {
          console.log(json);
@@ -88,8 +94,8 @@ function parsePosition(position) {
         
          function windSpeed(){
             $(".windspeed img").css({
-                 'animation-duration' : (windspeed/8)+'s',
-                 '-webkit-animation-duration' : (windspeed/8)+'s',
+                 'animation-duration' : (8/windspeed)+'s',
+                 '-webkit-animation-duration' : (8/windspeed)+'s',
                  }
              );
              $(".windspeed div").text(Math.round(windspeed));
@@ -163,14 +169,19 @@ function moveFuture(){
     }
 };
 
+$("#searchForm").submit(function(e){
+    
+    parsePosition("0");
+    return false;
+});
+
 // Ready
 $(document).ready(function () {
     initiateSlide();
     setSlideHeight();
-    //getLocation();
+    parsePosition(); //getLocation();
     WeekDay();
     moveFuture();
-    parsePosition();
 });
 // Ready - END
 

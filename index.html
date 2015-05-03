@@ -16,13 +16,17 @@
 	</head>
     <body>
         <div class="wrapper">
+            <form id="searchForm">
+                <input id="searchInput" type="search" placeholder="Search" autocomplete="off">
+                <button id="submit" type="submit"></button>
+            </form>
             <div class="slide-container">
                 <div class="page">
                     <div id="settings">
                         <h1>Settings</h1>
                         <div class="setting degree">
                             <p>Degrees</p>
-                            <form action="">
+                            <form id="settForm" action="">
                                 <input type="checkbox" id="cb1" class="tgl tgl-light">
                                 <label for="cb1" class="tgl-btn"></label>
                             </form>
@@ -56,15 +60,15 @@
                             
                             </div>
                             <div class="windspeed">
-                                <img src="img/fanIKKESVG.png">
+                                <img src="img/fan_ikkesvg.png">
                                 <div></div>
                                 <span>m/s</span>
                                 
                             </div> 
                             <div class="sun">
                                 <img src="img/sunUpDown.svg">
-                                <div class="sunrise">f</div>
-                                <div class="sunset">f</div>
+                                <div class="sunrise"></div>
+                                <div class="sunset"></div>
                             </div>      
                         </div>
                         

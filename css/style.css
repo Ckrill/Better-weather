@@ -7,12 +7,7 @@
 /* General */
 *{
     box-sizing: border-box;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -o-user-select: none;
-    user-select: none;
+
 }
 
 body {
@@ -77,4 +72,18 @@ ul#bullets {
 #bullets .active {
     opacity: .7;
 }
+
+#searchInput {
+    background: white;
+    width: 100%;    
+    outline: none;
+    border:none;
+    padding: 15px;
+    font-size: 16px;
+
+}
+#submit{
+    display: none;
+}
+
 /* Interface - END */
