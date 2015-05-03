@@ -44,8 +44,8 @@ function parsePosition(position) {
     var wwo = "http://api.worldweatheronline.com/free/v2/weather.ashx?q=",
     mode = "&format=json&num_of_days=4&includelocation=yes",
     key =  "&key=82594deb029ae9095181418b6edfd";
-    if(position==0){
-        var query = $("#searchInput").val();
+    if(window.location.hash){
+        var query = window.location.hash.replace("#", ""),
         url = wwo+query+mode+key;
     }else{
         var /*lati = position.coords.latitude,
@@ -174,10 +174,12 @@ function moveFuture(){
 };
 
 $("#searchForm").submit(function(e){
-    
-    parsePosition("0");
+    var hashtag = $("#searchInput").val();
+    window.location.href = '#'+hashtag;
+    location.reload();
     return false;
 });
+
 
 function searchBar() {
     $("#searchIcon").hover(function() {
