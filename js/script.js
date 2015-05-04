@@ -229,11 +229,6 @@ function initiateSetting() {
             $('#'+myStringArray[i]+'').prop('checked', true);
             eval(''+myStringArray[i]+'()');
         }
-        else{
-           
-            //alert("gemt");
-        }
-
     }
 }
 
