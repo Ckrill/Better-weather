@@ -39,15 +39,15 @@
     margin: 10px;
 }
 
-.winddir{
+.windDir{
     position: relative;
     margin-bottom: 15px;
 }
-.winddir img{
+.windDir img{
     width: 45px;
 }
 
-.winddir .pin {
+.windDir .pin {
     position: absolute;
     top: -11px;
     padding: 14px;
@@ -57,17 +57,17 @@
     position: absolute;
     left: 8px;
 }
-.uv{ 
+.uvIndex{ 
     width: 60px;
     height: 60px;
 }
 
-.uv img+img{
+.uvIndex img+img{
       position: absolute;
       top: 10px;
 }
 
-.uv:after{
+.uvIndex:after{
     content: 'UV Index';
     display: block;
     font-size: 13px;
@@ -83,14 +83,14 @@
     display: block;
     font-size: 13px;
 }
-.windspeed {
+.windSpeed {
     position: relative;
     color: #2D64A3;
 }
-.windspeed:hover span, .windspeed:hover div {
+.windSpeed:hover span, .windSpeed:hover div {
     display: block;
 }
-.windspeed img{
+.windSpeed img{
     width: 60px;
     animation: rotate;
     -webkit-animation: rotate;
@@ -99,7 +99,7 @@
     animation-iteration-count: infinite;
     -webkit-animation-iteration-count: infinite;
 }
-.windspeed div,.windspeed span {
+.windSpeed div,.windSpeed span {
     position: absolute;
     text-align: center;
     top: 8px;
@@ -109,7 +109,7 @@
     margin: auto;
     display: none;
 }
-.windspeed span {
+.windSpeed span {
     top: 45px;
     font-size: 10px;
 }
