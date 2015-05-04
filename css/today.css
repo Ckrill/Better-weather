@@ -43,28 +43,31 @@
     position: relative;
     margin-bottom: 15px;
 }
+.winddir img{
+    width: 45px;
+}
+
 .winddir .pin {
     position: absolute;
     top: -11px;
-    padding: 20px;
+    padding: 14px;
 }
 .dirABB{
-    font-size: 14px;
+    font-size: 13px;
     position: absolute;
-    left: 18px;
+    left: 8px;
 }
 .uv{ 
-    text-align: center;
     width: 60px;
     height: 60px;
 }
 
 .uv img+img{
       position: absolute;
-      top: 30px;
+      top: 10px;
 }
 
-.uv:before{
+.uv:after{
     content: 'UV Index';
     display: block;
     font-size: 13px;
