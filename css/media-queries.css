@@ -2,15 +2,14 @@
     #bullets{
         display: none;
     }
-    #today  .settingsIcon{
+    #today .settingsIcon{
         display: block;
     }
     #searchIcon{
         display: none;
     }
-    #searchInput {
+    #searchForm {
         position: static!important;
-        
     }
     #settings .backBtn {
         display: block;

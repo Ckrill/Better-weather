@@ -29,7 +29,7 @@
 }
 .optionalInfo{
     position: absolute;
-    bottom: 50px;
+    bottom: 20px;
     width: 92%; /*   ???   */
 }
 .optionalInfo > div{

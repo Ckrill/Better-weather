@@ -73,21 +73,23 @@ ul#bullets {
     opacity: .7;
 }
 
+#searchForm {
+    top: -50px;
+    position: absolute;
+    z-index: 99;
+    width: 100%;
+    transition: top .4s ease;
+}
 #searchInput {
     background: white;
-    position: absolute;
-    top: -50px;
-    transition: top .4s ease;
-    z-index: 99;
-    left: 0;
-    width: 100%;    
+    width: 100%;
     outline: none;
     border: none;
     padding: 16px;
     font-size: 16px;
 }
-#searchInput.searchActive {
-    top: 0px;
+#searchForm.searchActive {
+    top: 0;
 }
 #submit{
     display: none;

@@ -56,7 +56,6 @@ function getLocation() {
     }else{
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(parsePosition);
-            alert("hejsa");
         } else { 
             alert("Geolocation is not supported by this browser.");
         }
@@ -121,11 +120,11 @@ function parsePosition(position) {
              var temp4 = json.data.weather[3].maxtempC;
              insertInHtml(temp3+"°","#degrees4");
              initiateSetting();
-             $(".loadingScreen").fadeOut();
          }else{
             insertInHtml("Couldn't find your location",".location");
             insertInHtml(":(",".degrees");
         }
+        $(".loadingScreen").fadeOut();
     });
 }
 //Parse position -END
@@ -211,7 +210,7 @@ function moveFuture(){
      if ($(window).width() > 750) {
          $("#future").appendTo("div[data-slick-index='1']");
          $("body").addClass("desktopMode");
-         $('.slide-container').slick("slickGoTo", 1);
+         //$('.slide-container').slick("slickGoTo", 1);
     }
     else {
         $("#future").appendTo("div[data-slick-index='2']");
@@ -229,10 +228,10 @@ $("#searchForm").submit(function(e){
 
 function searchBar() {
     $("#searchIcon").click(function() {
-        $("#searchInput").addClass("searchActive");
+        $("#searchForm").addClass("searchActive");
         $("#searchInput").focus();
-        $( "#searchInput" ).mouseout(function() {
-            $( this ).removeClass("searchActive");
+        $( "#searchInput" ).focusout(function() {
+            $( "#searchForm" ).removeClass("searchActive");
         });
     });
 }
@@ -255,7 +254,7 @@ function checkboxCheck() {
 function initiateSetting() {
     var myStringArray = ["uvIndex","windDir","windChill", "windSpeed","sun"];
     var arrayLength = myStringArray.length;
-    for (var i = 0; i < arrayLength; i++) {
+    for (var i = 0; i <= arrayLength; i++) {
         if(localStorage.getItem(myStringArray[i])=="true"){
             $('#'+myStringArray[i]+'').prop('checked', true);
             eval(''+myStringArray[i]+'()');
@@ -275,8 +274,6 @@ $(document).ready(function () {
     moveFuture();
     searchBar();
     checkboxCheck();
-    
-
 });
 // Ready - END
 
@@ -292,4 +289,3 @@ $(window).resize(function () {
     moveFuture();
 });
 //Resize - END
-
