@@ -29,7 +29,6 @@ function initiateSlide() {
 function loadingAnimation() {
     if(window.location.hash) {
         $("html").addClass("hashtag");
-        $("html").click("hashtag");
         $("#searchForm span").click(function() {
              window.location = document.location.href.replace(location.hash , "" );;
         });
@@ -71,6 +70,7 @@ function parsePosition(position) {
     if(window.location.hash){
         var query = window.location.hash.replace("#", ""),
         url = wwo+query+mode+key;
+        $("#searchInput").val(window.location.hash.replace("#", ""));
     }else{
         var /*lati = position.coords.latitude,
         longi = position.coords.longitude,
