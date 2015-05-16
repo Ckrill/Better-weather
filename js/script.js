@@ -49,6 +49,14 @@ function setSlideHeight() {
 }
 // Set height of Slider - END
 
+// Set width of Slider
+function setSlideWidth() {
+    var windowWidth = $(window).width();
+    console.log(windowWidth);
+    $(".page:not(:first-of-type)").css("width", windowWidth + "px");
+}
+// Set width of Slider - END
+
 // Get position
 function getLocation() {
     if(window.location.hash){
@@ -263,18 +271,35 @@ function initiateSetting() {
     }
 }
 
-
+// Click
+function clickEvents() {
+    $(".settingsIcon").click(function () {
+        var currentSlide = $('.slide-container').slick("slickCurrentSlide");
+        if (currentSlide !== 0) {
+            toSlide(0);
+            $(".settingsIcon").css("transform", "rotate(180deg)");
+            $(".settingsIcon").toggleClass("active", true);
+        } else {
+            toSlide(1);
+            $(".settingsIcon").css("transform", "rotate(0deg)");
+            $(".settingsIcon").toggleClass("active", false);
+        };
+    });
+};
+// Click - END
 
 // Ready
 $(document).ready(function () {
     loadingAnimation();
     initiateSlide();
     setSlideHeight();
+    setSlideWidth();
     parsePosition(); //getLocation();
     WeekDay();
     moveFuture();
     searchBar();
     checkboxCheck();
+    clickEvents();
 });
 // Ready - END
 

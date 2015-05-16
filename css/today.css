@@ -22,10 +22,13 @@
     left: 10px;
     display: none;
     cursor: pointer;
-    transition: transform 1s;
+    transition: transform .6s;;
 }
 #today .settingsIcon:hover {
-    transform: rotate(180deg);
+    transform: rotate(60deg) !important;
+}
+#today .settingsIcon.active:hover {
+    transform: rotate(120deg) !important;
 }
 .optionalInfo{
     position: absolute;

@@ -1,24 +1,3 @@
-/* General, should be moved to style.css*/
-
-.page {
-    overflow-y: auto;
-}
-.page > div {
-    min-height: 100%;
-    height: auto !important;
-}
-/* Today: */
-#today .settingsIcon{
-    transition: transform .6s;
-}
-#today .settingsIcon:hover {
-    transform: rotate(60deg) !important;
-    transition: transform .5s;
-}
-#today .settingsIcon.active:hover {
-    transform: rotate(120deg) !important;
-}
-
 /* Settings */
 #settings {
     background-color: #181818;
