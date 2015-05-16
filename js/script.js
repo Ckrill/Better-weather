@@ -10,10 +10,11 @@
 // Initiate slider
 function initiateSlide() {
     $('.slide-container').slick({
-        initialSlide: 1,
+        initialSlide: 0,
         arrows: false,
         infinite: false,
         swipe: false,
+        variableWidth: true,
         responsive: [
             {
                 breakpoint: 960,

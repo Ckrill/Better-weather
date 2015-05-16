@@ -1,21 +1,51 @@
+/* General, should be moved to style.css*/
+
+.page {
+    overflow-y: auto;
+}
+.page > div {
+    min-height: 100%;
+    height: auto !important;
+}
+/* Today: */
+#today .settingsIcon{
+    transition: transform .6s;
+}
+#today .settingsIcon:hover {
+    transform: rotate(60deg) !important;
+    transition: transform .5s;
+}
+#today .settingsIcon.active:hover {
+    transform: rotate(120deg) !important;
+}
+
 /* Settings */
 #settings {
     background-color: #181818;
     padding: 20px;
     position: relative;
+    max-width: 400px;
 }
-h1 {
+h1, h2 {
     text-align: center;
+}
+h2 {
+    font-size: 1.3em;
 }
 .setting {
     font-size: 1rem;
     height: 2em;
 /*    position: relative;*/
-    padding-right: 20px;
     margin: 1em 0;
 }
 .setting form {
     position: relative;
+    float: right;
+    margin-left: 30px;
+    padding-right: 20px;
+}
+.setting:not(.trueFalse) form {
+    padding-left: 20px;
 }
 #settings p {
     margin: 0;
@@ -30,30 +60,31 @@ h1 {
     line-height: 2em;
 }
 /* Degree setting */
-.degree form:before {
+#degree form:before {
     content: "°C";
-    left: -20px;
+    left: 0;
 }
-.degree form:after {
+#degree form:after {
     content: "°F";
-    right: -20px;
+    right: 0;
 }
 /* Degree setting - END */
 
 /* Wind force */
-.wind form:before {
+/*
+#windSpeed form:before {
     content: "Yes";
     left: -20px;
 }
-.wind form:after {
+#windSpeed form:after {
     content: "No";
     right: -20px;
 }
+*/
 /* Wind force - END */
 
 #settForm {
     display: inline-block;
-    float: right;
     font-size: 1em;
 }
 
@@ -118,9 +149,9 @@ img.backBtn{
         background: #fff;
         transition: all .2s ease;
     }
-.tgl-light:checked + .tgl-btn {
+.trueFalse .tgl-light:checked + .tgl-btn {
 /*    background: #9FD6AE;*/
-/*    background-color: #71a880;*/
+    background-color: #71a880;
 }
 /* Styled checkboxes - END */
 

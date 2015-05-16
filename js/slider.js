@@ -9,3 +9,31 @@ $(document).ready(function () {
         $("#bullets li:nth-child(" + (currentSlide + 1) + ")" ).toggleClass("active", true);
     });
 });
+
+// Set height of Slider
+function setSlideWidth() {
+    var windowWidth = $(window).width();
+    console.log(windowWidth);
+    $(".page:not(:first-of-type)").css("width", windowWidth + "px");
+}
+// Set height of Slider - END
+
+function clickEvents() {
+    $(".settingsIcon").click(function () {
+        var currentSlide = $('.slide-container').slick("slickCurrentSlide");
+        if (currentSlide !== 0) {
+            toSlide(0);
+            $(".settingsIcon").css("transform", "rotate(180deg)");
+            $(".settingsIcon").toggleClass("active", true);
+        } else {
+            toSlide(1);
+            $(".settingsIcon").css("transform", "rotate(0deg)");
+            $(".settingsIcon").toggleClass("active", false);
+        };
+    });
+};
+
+$(document).ready(function () {
+    setSlideWidth();
+    clickEvents();
+});
