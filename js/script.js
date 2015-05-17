@@ -43,7 +43,7 @@ function loadingAnimation() {
 // Set height of Slider
 function setSlideHeight() {
     var windowHeight = $(window).height();
-    console.log(windowHeight);
+//    console.log(windowHeight);
     if ($(window).width() > 750) {
          $(".page").css("height", (windowHeight-50) + "px");
     }else{
@@ -55,7 +55,7 @@ function setSlideHeight() {
 // Set width of Slider
 function setSlideWidth() {
     var windowWidth = $(window).width();
-    console.log(windowWidth);
+//    console.log(windowWidth);
     $(".page:not(:first-of-type)").css("width", windowWidth + "px");
 }
 // Set width of Slider - END
@@ -143,56 +143,26 @@ function parsePosition(position) {
 
 //Insert data
 function insertInHtml(variable, id){
-     $(id).text(variable);
- };
+    $(id).text(variable);
+};
 //Insert data - END
 
-function windDir(){
-    if ($('#winddir').length > 0) {
-        $(this).show();
-    }else{
-        
-        $('<div class="windDir"><img src="img/winddir.svg"><img class="pin" src="img/pin.svg" style="-webkit-transform: rotate('+ winddir +'deg); -moz-transform: rotate('+ winddir +'deg); -ms-transform: rotate('+ winddir +'deg); transform: rotate('+ winddir +'deg);"><span class="dirABB">'+winddirABB+'</span></div>').appendTo(".optionalInfo");
-    }
-}
-
-function uvIndex(){
-    if ($('.uv').length > 0) {
-        $(this).show();
-    }else{
-     $('<div class="uvIndex"><img src="img/speedometer.svg"><img src="img/speedometer-pin.svg" style="transform: rotate('+(110+(uv*20))+'deg);"></div>').appendTo(".optionalInfo");
-    }
-}
-
- function windChill(){
-    if ($('.windChill').length > 0) {
-            $(this).show();
-    }else{
-        $('<div class="windChill">'+windchill+'°</div>').appendTo(".optionalInfo");
-    }
- }
-
-
- function windSpeed(){
-     if ($('.windSpeed').length > 0) {
-            $(this).show();
-    }else{
-     $('<div class="windSpeed"><img src="img/fan_ikkesvg.png" style="animation-duration: '+(8/windspeed)+'s; -webkit-animation-duration: '+(8/windspeed)+'s;"><div>'+Math.round(windspeed)+'</div><span>m/s</span></div>').appendTo(".optionalInfo");
-    }
- }
-
-
-function sun(){
-    if ($('.sun').length > 0) {
-            $(this).show();
-    }else{
-        $('<div class="sun"><img src="img/sunUpDown.svg"><div class="sunrise">'+sunrise+'</div><div class="sunset">'+sunset+'</div></div>').appendTo(".optionalInfo");
+function settingsToggle(nameId) {
+    var uvIndex = $('<div class="uvIndex"><img src="img/speedometer.svg"><img src="img/speedometer-pin.svg" style="transform: rotate(' + (110 + (uv * 20)) + 'deg);"></div>'),
+    sun = $('<div class="sun"><img src="img/sunUpDown.svg"><div class="sunrise">'+sunrise+'</div><div class="sunset">'+sunset+'</div></div>'),
+    windSpeed = $('<div class="windSpeed"><img src="img/fan_ikkesvg.png" style="animation-duration: ' + (8 / windspeed) + 's; -webkit-animation-duration: ' + (8 / windspeed) + 's;"><div>' + Math.round(windspeed) + '</div><span>m/s</span></div>'),
+    windDir = $('<div class="windDir"><img src="img/winddir.svg"><img class="pin" src="img/pin.svg" style="-webkit-transform: rotate(' + winddir + 'deg); -moz-transform: rotate(' + winddir + 'deg); -ms-transform: rotate(' + winddir + 'deg); transform: rotate(' + winddir + 'deg);"><span class="dirABB">' + winddirABB + '</span></div>'),
+    windChill = $('<div class="windChill">' + windchill + '°</div>');
+    if ($('.' + nameId).length > 0) {
+        $(".optionalInfo ." + nameId).show();
+    } else {
+        eval(nameId).appendTo(".optionalInfo");
     }
 }
 
 // Weekday handler
 function WeekDay() {
-    x=1;
+    x = 1;
     for (i = 0; i < 2; i++) { 
         var d = new Date();
         var weekday = new Array(7);
@@ -206,9 +176,9 @@ function WeekDay() {
         weekday[7] = "Sunday";
         weekday[8] = "Monday";
         weekday[9] = "Tuesday";
-        var n = weekday[d.getDay()+i+1];
-        x=x+1;
-        document.getElementById('weekday'+x).innerHTML = n;
+        var n = weekday[d.getDay() + i + 1];
+        x = x + 1;
+        document.getElementById('weekday' + x).innerHTML = n;
     }
 }
 // Weekday handler - END
@@ -232,7 +202,7 @@ function moveFuture(){
 
 $("#searchForm").submit(function(e){
     var hashtag = $("#searchInput").val();
-    window.location.href = '#'+hashtag;
+    window.location.href = '#' + hashtag;
     location.reload();
     return false;
 });
@@ -251,15 +221,13 @@ function checkboxCheck() {
     $('.setting input').change(function(){
         var value = this.checked ? 'true' : 'false';
         var nameId = $(this).parents('.setting').attr('id');
-        console.info($(this).parents('.setting'));
-        console.log(value);
-        if(value == "true" ) {
+        if (value == "true" ) {
             localStorage.setItem(nameId, "true");
-            eval(''+nameId+'()');
-            
+//            eval('' + nameId + '(nameId)');
+            settingsToggle(nameId);
         } else {
             localStorage.setItem(nameId, "0");
-            $('.'+nameId+'').hide();
+            $('.' + nameId + '').hide();
         }
     });
 }
@@ -267,10 +235,13 @@ function checkboxCheck() {
 function initiateSetting() {
     var myStringArray = ["uvIndex","windDir","windChill", "windSpeed","sun"];
     var arrayLength = myStringArray.length;
+    console.log("test0");
     for (var i = 0; i <= arrayLength; i++) {
+        console.log("test0a");
         if (localStorage.getItem(myStringArray[i]) == "true"){
+            console.log("test0b");
             $('#' + myStringArray[i] + ' input').prop('checked', true);
-            eval('' + myStringArray[i] + '()');
+            settingsToggle(myStringArray[i]);
         }
     }
 }
