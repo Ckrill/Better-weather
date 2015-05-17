@@ -50,27 +50,51 @@
             <div class="page">
                 <div id="settings">
                     <h1>Settings</h1>
-                    <div class="setting degree">
-                        <p>Degrees</p>
-                        <form id="settForm" action="">
-                            <input type="checkbox" id="cb1" class="tgl tgl-light">
-                            <label for="cb1" class="tgl-btn"></label>
-                        </form>
+                    <div class="forms">
+                        <div id="degree" class="setting">
+                            <p>Degrees</p>
+                            <form action="">
+                                <input type="checkbox" id="cb1" class="tgl tgl-light">
+                                <label for="cb1" class="tgl-btn"></label>
+                            </form>
+                        </div>
+                        <div id="sun" class="setting trueFalse">
+                            <p>Sun</p>
+                            <form action="">
+                                <input type="checkbox" id="cb2" class="tgl tgl-light">
+                                <label for="cb2" class="tgl-btn"></label>
+                            </form>
+                        </div>
+                        <div id="uvIndex" class="setting trueFalse">
+                            <p>UV Index</p>
+                            <form action="">
+                                <input type="checkbox" id="cb3" class="tgl tgl-light">
+                                <label for="cb3" class="tgl-btn"></label>
+                            </form>
+                        </div>
+                        <h2>Wind</h2>
+                        <div id="windSpeed" class="setting trueFalse">
+                            <p>Wind force</p>
+                            <form action="">
+                                <input type="checkbox" id="cb4" class="tgl tgl-light">
+                                <label for="cb4" class="tgl-btn"></label>
+                            </form>
+                        </div>
+                        <div id="windDir" class="setting trueFalse">
+                            <p>Wind direction</p>
+                            <form action="">
+                                <input type="checkbox" id="cb5" class="tgl tgl-light">
+                                <label for="cb5" class="tgl-btn"></label>
+                            </form>
+                        </div>
+                        <div id="windChill" class="setting trueFalse">
+                            <p>Wind Chill</p>
+                            <form action="">
+                                <input type="checkbox" id="cb6" class="tgl tgl-light">
+                                <label for="cb6" class="tgl-btn"></label>
+                            </form>
+                        </div>
                     </div>
-                    <div class="setting wind">
-                        <p>Wind force</p>
-                        <form action="">
-                            <input type="checkbox" id="cb2" class="tgl tgl-light">
-                            <label for="cb2" class="tgl-btn"></label>
-                        </form>
-                    </div>
-                    <input type="checkbox" class="check" id="windDir" />
-                    <input type="checkbox" class="check" id="uvIndex" />
-                    <input type="checkbox" class="check" id="windChill" />
-                    <input type="checkbox" class="check" id="windSpeed" />
-                    <input type="checkbox" class="check" id="sun" />
-
-                    <img src="img/back.svg" class="backBtn" onclick="toSlide(1)">
                 </div>
             </div>
             <div class="page">
