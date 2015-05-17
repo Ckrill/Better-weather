@@ -3,6 +3,7 @@
     background-color: #181818;
     padding: 20px;
     position: relative;
+    min-width: 300px;
     max-width: 400px;
 }
 h1, h2 {

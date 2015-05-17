@@ -245,13 +245,14 @@ function searchBar() {
     });
 }
 function checkboxCheck() {
-    $('.check').change(function(){
+    $('.setting input').change(function(){
         var value = this.checked ? 'true' : 'false';
-        var nameId = $(this).attr('id');
+        var nameId = $(this).parents('.setting').attr('id');
+        console.info($(this).parents('.setting'));
         console.log(value);
         if(value == "true" ) {
             localStorage.setItem(nameId, "true");
-            eval(''+nameId+'()'); 
+            eval(''+nameId+'()');
             
         } else {
             localStorage.setItem(nameId, "0");
