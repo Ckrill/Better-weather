@@ -239,11 +239,8 @@ function checkboxCheck() {
 function initiateSetting() {
     var myStringArray = ["uvIndex","windDir","windChill", "windSpeed","sun"];
     var arrayLength = myStringArray.length;
-    console.log("test0");
     for (var i = 0; i <= arrayLength; i++) {
-        console.log("test0a");
         if (localStorage.getItem(myStringArray[i]) == "true"){
-            console.log("test0b");
             $('#' + myStringArray[i] + ' input').prop('checked', true);
             settingsToggle(myStringArray[i]);
         }
