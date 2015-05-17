@@ -39,7 +39,6 @@ body {
 }
 .page > div {
     min-height: 100%;
-    height: auto !important;
 }
 ul#bullets {
     position: fixed;
