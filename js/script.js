@@ -1,11 +1,14 @@
-         
- var winddir = "",
- winddirABB = "",
- windchill = "",
- windspeed = "",
- uv = "",
- sunrise = "",
- sunset = "";
+/*jslint browser: true*/
+/*global $, jQuery, alert, func*/
+/*jslint plusplus: true */
+
+var winddir = "",
+winddirABB = "",
+windchill = "",
+windspeed = "",
+uv = "",
+sunrise = "",
+sunset = "";
 
 // Initiate slider
 function initiateSlide() {
@@ -265,9 +268,9 @@ function initiateSetting() {
     var myStringArray = ["uvIndex","windDir","windChill", "windSpeed","sun"];
     var arrayLength = myStringArray.length;
     for (var i = 0; i <= arrayLength; i++) {
-        if(localStorage.getItem(myStringArray[i])=="true"){
-            $('#'+myStringArray[i]+'').prop('checked', true);
-            eval(''+myStringArray[i]+'()');
+        if (localStorage.getItem(myStringArray[i]) == "true"){
+            $('#' + myStringArray[i] + ' input').prop('checked', true);
+            eval('' + myStringArray[i] + '()');
         }
     }
 }
