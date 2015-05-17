@@ -2,13 +2,20 @@
 /*global $, jQuery, alert, func*/
 /*jslint plusplus: true */
 
-var winddir = "",
+// Settings
+var breakpoint = 750; // unit in px
+
+// Settings - END
+
+// Vars for weather API
+winddir = "",
 winddirABB = "",
 windchill = "",
 windspeed = "",
 uv = "",
 sunrise = "",
 sunset = "";
+// Vars for weather API - END
 
 // Initiate slider
 function initiateSlide() {
@@ -30,6 +37,12 @@ function initiateSlide() {
 }
 // Initiate slider - END
 
+// Go to slide
+function toSlide(slideNumb){
+    $(".slide-container").slick("slickGoTo", slideNumb);
+}
+// Go to slide - END
+
 function loadingAnimation() {
     if(window.location.hash) {
         $("html").addClass("hashtag");
@@ -44,7 +57,7 @@ function loadingAnimation() {
 function setSlideHeight() {
     var windowHeight = $(window).height();
 //    console.log(windowHeight);
-    if ($(window).width() > 750) {
+    if ($(window).width() > breakpoint) {
          $(".page").css("height", (windowHeight-50) + "px");
     }else{
         $(".page").css("height", (windowHeight) + "px");
@@ -55,8 +68,16 @@ function setSlideHeight() {
 // Set width of Slider
 function setSlideWidth() {
     var windowWidth = $(window).width();
-//    console.log(windowWidth);
-    $(".page:not(:first-of-type)").css("width", windowWidth + "px");
+    if (windowWidth > breakpoint) {
+        $(".page:not(:first-of-type)").css("width", (windowWidth / 2) + "px");
+        
+        var currentSlide = $('.slide-container').slick("slickCurrentSlide");
+        if (currentSlide == 2) {
+            toSlide(1); // if slider is on future go back to today
+        }
+    } else {
+        $(".page:not(:first-of-type)").css("width", windowWidth + "px");
+    }
 }
 // Set width of Slider - END
 
@@ -139,7 +160,7 @@ function parsePosition(position) {
         $(".loadingScreen").fadeOut();
     });
 }
-//Parse position -END
+//Parse position - END
 
 //Insert data
 function insertInHtml(variable, id){
@@ -182,23 +203,6 @@ function WeekDay() {
     }
 }
 // Weekday handler - END
-
-
-function toSlide(slideNumb){
-    $(".slide-container").slick("slickGoTo", slideNumb);
-}
-
-function moveFuture(){
-     if ($(window).width() > 750) {
-         $("#future").appendTo("div[data-slick-index='1']");
-         $("body").addClass("desktopMode");
-         //$('.slide-container').slick("slickGoTo", 1);
-    }
-    else {
-        $("#future").appendTo("div[data-slick-index='2']");
-        $("body").removeClass("desktopMode");
-    }
-}
 
 $("#searchForm").submit(function(e){
     var hashtag = $("#searchInput").val();
@@ -271,7 +275,7 @@ $(document).ready(function () {
     setSlideWidth();
     parsePosition(); //getLocation();
     WeekDay();
-    moveFuture();
+//    moveFuture();
     searchBar();
     checkboxCheck();
     clickEvents();
@@ -288,6 +292,6 @@ $(window).scroll(function () {
 $(window).resize(function () {
     setSlideHeight();
     setSlideWidth();
-    moveFuture();
+//    moveFuture();
 });
 //Resize - END
