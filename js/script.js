@@ -13,7 +13,7 @@ sunset = "";
 // Initiate slider
 function initiateSlide() {
     $('.slide-container').slick({
-        initialSlide: 0,
+        initialSlide: 1,
         arrows: false,
         infinite: false,
         swipe: false,
