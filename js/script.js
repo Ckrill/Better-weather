@@ -3,24 +3,26 @@
 /*jslint plusplus: true */
 
 // Settings
-var breakpoint = 750; // unit in px
+var breakpoint = 750, // unit in px
 
 // Settings - END
 
 // Vars for weather API
-winddir = "",
-winddirABB = "",
-windchill = "",
-windspeed = "",
-uv = "",
-sunrise = "",
-sunset = "";
+    tempC,
+    tempF,
+    winddir = "",
+    winddirABB = "",
+    windchill = "",
+    windspeed = "",
+    uv = "",
+    sunrise = "",
+    sunset = "";
 // Vars for weather API - END
 
 // Initiate slider
 function initiateSlide() {
     $('.slide-container').slick({
-        initialSlide: 1,
+        initialSlide: 0,
         arrows: false,
         infinite: false,
         swipe: false,
@@ -100,60 +102,66 @@ function parsePosition(position) {
     var wwo = "http://api.worldweatheronline.com/free/v2/weather.ashx?q=",
     mode = "&format=json&num_of_days=4&includelocation=yes",
     key =  "&key=82594deb029ae9095181418b6edfd";
-    if(window.location.hash){
+    if (window.location.hash) {
         var query = window.location.hash.replace("#", ""),
         url = wwo+query+mode+key;
         $("#searchInput").val(window.location.hash.replace("#", ""));
-    }else{
+    } else {
         var /*lati = position.coords.latitude,
         longi = position.coords.longitude,
         url = wwo+ lati+","+longi+mode+key; */
         url = wwo+ 55.654385+","+12.5915103+mode+key;
     }
-    
+
     $.getJSON(url, function (json) {
-         console.log(json);
-         if(!json.data.hasOwnProperty('error')){
-             var cityName = json.data.nearest_area[0].areaName[0].value,
-             country = json.data.nearest_area[0].country[0].value,
-             location = cityName+", "+country,
+        console.log(json);
+        if (!json.data.hasOwnProperty('error')) {
+            var cityName = json.data.nearest_area[0].areaName[0].value,
+            country = json.data.nearest_area[0].country[0].value,
+            location = cityName + ", " + country,
 
-             // Today 
-             temp = json.data.weather[0].maxtempC;
-             //wind = json.data.weather[0].hourly[4].windspeedKmph;
-             winddir = json.data.weather[0].hourly[4].winddirDegree,
-             winddirABB = json.data.weather[0].hourly[4].winddir16Point,
-             windchill = json.data.weather[0].hourly[4].WindChillC,
-             windspeed = json.data.weather[0].hourly[4].windspeedKmph,
-             windspeed = (windspeed *1000)/3600, // m/s
-             uv = json.data.weather[0].uvIndex,
-             sunrise = json.data.weather[0].astronomy[0].sunrise,
-             sunset = json.data.weather[0].astronomy[0].sunset,
-             rain1 = json.data.weather[0].hourly[0].precipMM,
-             rain2 = json.data.weather[0].hourly[1].precipMM,
-             rain3 = json.data.weather[0].hourly[2].precipMM,
-             rain4 = json.data.weather[0].hourly[3].precipMM,
-             rain5 = json.data.weather[0].hourly[4].precipMM,
-             rain6 = json.data.weather[0].hourly[5].precipMM,
-             rain7 = json.data.weather[0].hourly[6].precipMM,
-             rain8 = json.data.weather[0].hourly[7].precipMM,
-             rain = Number(rain1)+Number(rain2)+Number(rain3)+Number(rain4)+Number(rain5)+Number(rain6)+Number(rain7);
+            // Today 
+            tempC = json.data.weather[0].maxtempC,
+            tempF = json.data.weather[0].maxtempF;
+            //wind = json.data.weather[0].hourly[4].windspeedKmph;
+            winddir = json.data.weather[0].hourly[4].winddirDegree,
+            winddirABB = json.data.weather[0].hourly[4].winddir16Point,
+            windchill = json.data.weather[0].hourly[4].WindChillC,
+            windspeed = json.data.weather[0].hourly[4].windspeedKmph,
+            windspeed = (windspeed *1000)/3600, // m/s
+            uv = json.data.weather[0].uvIndex,
+            sunrise = json.data.weather[0].astronomy[0].sunrise,
+            sunset = json.data.weather[0].astronomy[0].sunset,
+            rain1 = json.data.weather[0].hourly[0].precipMM,
+            rain2 = json.data.weather[0].hourly[1].precipMM,
+            rain3 = json.data.weather[0].hourly[2].precipMM,
+            rain4 = json.data.weather[0].hourly[3].precipMM,
+            rain5 = json.data.weather[0].hourly[4].precipMM,
+            rain6 = json.data.weather[0].hourly[5].precipMM,
+            rain7 = json.data.weather[0].hourly[6].precipMM,
+            rain8 = json.data.weather[0].hourly[7].precipMM,
+            rain = Number(rain1) + Number(rain2) + Number(rain3) + Number(rain4) + Number(rain5) + Number(rain6) + Number(rain7);
 
-             insertInHtml(location,".location");
-             insertInHtml(temp+"°",".degrees");
+            insertInHtml(location,".location");
+            var value = $("#degree input:checked").length;
+            if (value > 0) {
+                insertInHtml(tempF + "°", ".degrees");
+            } else {
+                insertInHtml(tempC + "°", ".degrees");
+            }
 
-             // 2 day
-             var temp2 = json.data.weather[1].maxtempC;
-             insertInHtml(temp2+"°","#degrees2");
+            // 2 day
+            var tempC2 = json.data.weather[1].maxtempC;
+            insertInHtml(tempC2 + "°", "#degrees2");
 
-             // 3 day
-             var temp3 = json.data.weather[2].maxtempC; 
-             insertInHtml(temp3+"°","#degrees3"); 
+            // 3 day
+            var tempC3 = json.data.weather[2].maxtempC; 
+            insertInHtml(tempC3 + "°", "#degrees3"); 
 
-             var temp4 = json.data.weather[3].maxtempC;
-             insertInHtml(temp3+"°","#degrees4");
-             initiateSetting();
-         }else{
+            var tempC4 = json.data.weather[3].maxtempC;
+            insertInHtml(tempC3 + "°", "#degrees4");
+            initiateSetting();
+        } else {
             insertInHtml("Couldn't find your location",".location");
             insertInHtml(":(",".degrees");
         }
@@ -163,17 +171,17 @@ function parsePosition(position) {
 //Parse position - END
 
 //Insert data
-function insertInHtml(variable, id){
+function insertInHtml(variable, id) {
     $(id).text(variable);
 };
 //Insert data - END
 
 function settingsToggle(nameId) {
     var uvIndex = $('<div class="uvIndex"><img src="img/speedometer.svg"><img src="img/speedometer-pin.svg" style="transform: rotate(' + (110 + (uv * 20)) + 'deg);"></div>'),
-    sun = $('<div class="sun"><img src="img/sunUpDown.svg"><div class="sunrise">'+sunrise+'</div><div class="sunset">'+sunset+'</div></div>'),
-    windSpeed = $('<div class="windSpeed"><img src="img/fan_ikkesvg.png" style="animation-duration: ' + (8 / windspeed) + 's; -webkit-animation-duration: ' + (8 / windspeed) + 's;"><div>' + Math.round(windspeed) + '</div><span>m/s</span></div>'),
-    windDir = $('<div class="windDir"><img src="img/winddir.svg"><img class="pin" src="img/pin.svg" style="-webkit-transform: rotate(' + winddir + 'deg); -moz-transform: rotate(' + winddir + 'deg); -ms-transform: rotate(' + winddir + 'deg); transform: rotate(' + winddir + 'deg);"><span class="dirABB">' + winddirABB + '</span></div>'),
-    windChill = $('<div class="windChill">' + windchill + '°</div>');
+        sun = $('<div class="sun"><img src="img/sunUpDown.svg"><div class="sunrise">' + sunrise + '</div><div class="sunset">' + sunset + '</div></div>'),
+        windSpeed = $('<div class="windSpeed"><img src="img/fan_ikkesvg.png" style="animation-duration: ' + (8 / windspeed) + 's; -webkit-animation-duration: ' + (8 / windspeed) + 's;"><div>' + Math.round(windspeed) + '</div><span>m/s</span></div>'),
+        windDir = $('<div class="windDir"><img src="img/winddir.svg"><img class="pin" src="img/pin.svg" style="-webkit-transform: rotate(' + winddir + 'deg); -moz-transform: rotate(' + winddir + 'deg); -ms-transform: rotate(' + winddir + 'deg); transform: rotate(' + winddir + 'deg);"><span class="dirABB">' + winddirABB + '</span></div>'),
+        windChill = $('<div class="windChill">' + windchill + '°</div>');
     if ($('.' + nameId).length > 0) {
         $(".optionalInfo ." + nameId).show();
     } else {
@@ -222,7 +230,7 @@ function searchBar() {
     });
 }
 function checkboxCheck() {
-    $('.setting input').change(function(){
+    $('.setting.trueFalse input').change(function(){
         var value = this.checked ? 'true' : 'false';
         var nameId = $(this).parents('.setting').attr('id');
         if (value == "true" ) {
@@ -292,3 +300,11 @@ $(window).resize(function () {
 //    moveFuture();
 });
 //Resize - END
+
+// Arrow keys
+$(document).keyup(function (e) {
+	if(e.which == 40) { // Down
+        // Test here
+	}
+});
+// Arrow keys - END
