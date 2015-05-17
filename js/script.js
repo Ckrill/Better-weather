@@ -316,6 +316,7 @@ $(window).scroll(function () {
 // Resize
 $(window).resize(function () {
     setSlideHeight();
+    setSlideWidth();
     moveFuture();
 });
 //Resize - END
