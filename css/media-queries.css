@@ -14,4 +14,9 @@
     #settings .backBtn {
         display: block;
     }
+    .optionalInfo {
+
+        left: 50px;
+        max-width: calc(100% - 70px);
+    }
 }

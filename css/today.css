@@ -22,7 +22,7 @@
     left: 10px;
     display: none;
     cursor: pointer;
-    transition: transform .6s;;
+    transition: transform .6s;
 }
 #today .settingsIcon:hover {
     transform: rotate(60deg) !important;
@@ -34,8 +34,8 @@
     position: absolute;
     bottom: 20px;
     width: 100%;
-    left: 50px;
-    max-width: calc(100% - 70px);
+    left: 0;
+    max-width: none;
 }
 .optionalInfo > div{
     float: right;
