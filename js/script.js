@@ -179,7 +179,7 @@ function insertInHtml(variable, id) {
 function settingsToggle(nameId) {
     var uvIndex = $('<div class="uvIndex"><img src="img/speedometer.svg"><img src="img/speedometer-pin.svg" style="transform: rotate(' + (110 + (uv * 20)) + 'deg);"></div>'),
         sun = $('<div class="sun"><img src="img/sunUpDown.svg"><div class="sunrise">' + sunrise + '</div><div class="sunset">' + sunset + '</div></div>'),
-        windSpeed = $('<div class="windSpeed"><img src="img/fan_ikkesvg.png" style="animation-duration: ' + (8 / windspeed) + 's; -webkit-animation-duration: ' + (8 / windspeed) + 's;"><div>' + Math.round(windspeed) + '</div><span>m/s</span></div>'),
+        windSpeed = $('<div class="windSpeed"><img src="img/fan.svg" style="animation-duration: ' + (8 / windspeed) + 's; -webkit-animation-duration: ' + (8 / windspeed) + 's;"><div>' + Math.round(windspeed) + '</div><span>m/s</span></div>'),
         windDir = $('<div class="windDir"><img src="img/winddir.svg"><img class="pin" src="img/pin.svg" style="-webkit-transform: rotate(' + winddir + 'deg); -moz-transform: rotate(' + winddir + 'deg); -ms-transform: rotate(' + winddir + 'deg); transform: rotate(' + winddir + 'deg);"><span class="dirABB">' + winddirABB + '</span></div>'),
         windChill = $('<div class="windChill">' + windchill + '°</div>');
     if ($('.' + nameId).length > 0) {
