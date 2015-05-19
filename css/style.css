@@ -28,6 +28,8 @@ body {
 .page {
     background: #428bca;
     overflow-y: auto;
+    -webkit-backface-visibility: hidden; /* Chrome, Safari, Opera */
+    backface-visibility: hidden;
 }
 
 /* General - END */
