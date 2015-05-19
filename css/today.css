@@ -30,16 +30,31 @@
 #today .settingsIcon.active:hover {
     transform: rotate(120deg) !important;
 }
+.optionalInfo,
+.optionalInfo1,
+.optionalInfo2,
+.optionalInfo3 {
+    position: relative;
+    width: 100%;
+}
 .optionalInfo {
     position: absolute;
+    right: 0;
     bottom: 0;
-    width: 100%;
-    left: 0;
-    max-width: none;
-    overflow: none;
     margin-bottom: 25px;
 }
-.optionalInfo > div {
+.optionalInfo:after,
+.optionalInfo1:after,
+.optionalInfo2:after,
+.optionalInfo3:after {
+    clear: both;
+    content: "";
+    display: table;
+}
+.optionalInfo > div,
+.optionalInfo1 > div,
+.optionalInfo2 > div,
+.optionalInfo3 > div {
     float: right;
     width: 20%;
     padding: 10px;
