@@ -36,6 +36,7 @@
     width: 100%;
     left: 0;
     max-width: none;
+    overflow: none;
 }
 .optionalInfo > div{
     float: right;
