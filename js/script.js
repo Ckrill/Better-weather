@@ -239,13 +239,15 @@ function searchBar() {
     });
 }
 function checkboxCheck() {
-    $('.setting.trueFalse input').change(function(){
+    $('.setting input').change(function(){
         var value = this.checked ? 'true' : 'false';
         var nameId = $(this).parents('.setting').attr('id');
         if (value == "true" ) {
             localStorage.setItem(nameId, "true");
-//            eval('' + nameId + '(nameId)');
-            settingsToggle(nameId);
+//            eval('' + nameId + '(nameId1)');
+            if ($('#' + nameId).hasClass("trueFalse")) {
+                settingsToggle(nameId);
+            }
         } else {
             localStorage.setItem(nameId, "0");
             $('.' + nameId + '').hide();
@@ -254,12 +256,14 @@ function checkboxCheck() {
 }
 
 function initiateSetting() {
-    var myStringArray = ["uvIndex", "windDir", "windChill", "windSpeed", "sun"];
+    var myStringArray = ["degree", "uvIndex", "windDir", "windChill", "windSpeed", "sun"];
     var arrayLength = myStringArray.length;
     for (var i = 0; i <= arrayLength; i++) {
         if (localStorage.getItem(myStringArray[i]) == "true"){
             $('#' + myStringArray[i] + ' input').prop('checked', true);
-            settingsToggle(myStringArray[i]);
+            if ($('#' + myStringArray[i]).hasClass("trueFalse")) {
+                settingsToggle(myStringArray[i]);
+            }
         }
     }
 }
