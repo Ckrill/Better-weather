@@ -312,6 +312,19 @@ function clickEvents() {
 }
 // Click - END
 
+// Mobile Keyboard resize fix 
+function keyboardCheck() {
+   if($(document.activeElement).attr('type') === 'search') {
+       setSlideWidth();
+   } else {
+       setSlideHeight();
+       setSlideWidth();
+   }
+    
+}
+// Mobile Keyboard resize fix -END
+
+
 // Ready
 $(document).ready(function () {
     loadingAnimation();
@@ -335,8 +348,7 @@ $(window).scroll(function () {
 
 // Resize
 $(window).resize(function () {
-    setSlideHeight();
-    setSlideWidth();
+    keyboardCheck();
 //    moveFuture();
 });
 //Resize - END
