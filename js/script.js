@@ -9,14 +9,20 @@ var breakpoint = 750, // unit in px
 
 // Vars for weather API
     tempC,
+    tempC1,
+    tempC2,
+    tempC3,
     tempF,
-    winddir = "",
-    winddirABB = "",
-    windchill = "",
-    windspeed = "",
-    uv = "",
-    sunrise = "",
-    sunset = "";
+    tempF1,
+    tempF2,
+    tempF3,
+    winddir,
+    winddirABB,
+    windchill,
+    windspeed,
+    uv,
+    sunrise,
+    sunset;
 // Vars for weather API - END
 
 // Initiate slider
@@ -49,7 +55,7 @@ function loadingAnimation() {
     if(window.location.hash) {
         $("html").addClass("hashtag");
         $("#searchForm span").click(function() {
-             window.location = document.location.href.replace(location.hash , "" );;
+             window.location = document.location.href.replace(location.hash , "" );
         });
     }
 }
@@ -116,51 +122,54 @@ function parsePosition(position) {
     $.getJSON(url, function (json) {
         console.log(json);
         if (!json.data.hasOwnProperty('error')) {
+            
+            // Location
             var cityName = json.data.nearest_area[0].areaName[0].value,
-            country = json.data.nearest_area[0].country[0].value,
-            location = cityName + ", " + country,
-
+                country = json.data.nearest_area[0].country[0].value,
+                location = cityName + ", " + country;
+            
+            insertInHtml(location,".location");
+            
+            // Weather
+            
             // Today 
-            tempC = json.data.weather[0].maxtempC,
+            tempC = json.data.weather[0].maxtempC;
             tempF = json.data.weather[0].maxtempF;
             //wind = json.data.weather[0].hourly[4].windspeedKmph;
-            winddir = json.data.weather[0].hourly[4].winddirDegree,
-            winddirABB = json.data.weather[0].hourly[4].winddir16Point,
-            windchill = json.data.weather[0].hourly[4].WindChillC,
-            windspeed = json.data.weather[0].hourly[4].windspeedKmph,
-            windspeed = (windspeed *1000)/3600, // m/s
-            uv = json.data.weather[0].uvIndex,
-            sunrise = json.data.weather[0].astronomy[0].sunrise,
-            sunset = json.data.weather[0].astronomy[0].sunset,
-            rain1 = json.data.weather[0].hourly[0].precipMM,
-            rain2 = json.data.weather[0].hourly[1].precipMM,
-            rain3 = json.data.weather[0].hourly[2].precipMM,
-            rain4 = json.data.weather[0].hourly[3].precipMM,
-            rain5 = json.data.weather[0].hourly[4].precipMM,
-            rain6 = json.data.weather[0].hourly[5].precipMM,
-            rain7 = json.data.weather[0].hourly[6].precipMM,
-            rain8 = json.data.weather[0].hourly[7].precipMM,
-            rain = Number(rain1) + Number(rain2) + Number(rain3) + Number(rain4) + Number(rain5) + Number(rain6) + Number(rain7);
+            winddir = json.data.weather[0].hourly[4].winddirDegree;
+            winddirABB = json.data.weather[0].hourly[4].winddir16Point;
+            windchill = json.data.weather[0].hourly[4].WindChillC;
+            windspeed = json.data.weather[0].hourly[4].windspeedKmph;
+            windspeed = (windspeed * 1000) / 3600; // m/s
+            uv = json.data.weather[0].uvIndex;
+            sunrise = json.data.weather[0].astronomy[0].sunrise;
+            sunset = json.data.weather[0].astronomy[0].sunset;
+            
+            var rain1 = json.data.weather[0].hourly[0].precipMM,
+                rain2 = json.data.weather[0].hourly[1].precipMM,
+                rain3 = json.data.weather[0].hourly[2].precipMM,
+                rain4 = json.data.weather[0].hourly[3].precipMM,
+                rain5 = json.data.weather[0].hourly[4].precipMM,
+                rain6 = json.data.weather[0].hourly[5].precipMM,
+                rain7 = json.data.weather[0].hourly[6].precipMM,
+                rain8 = json.data.weather[0].hourly[7].precipMM,
+                rain = Number(rain1) + Number(rain2) + Number(rain3) + Number(rain4) + Number(rain5) + Number(rain6) + Number(rain7);
 
-            insertInHtml(location,".location");
-            var value = $("#degree input:checked").length;
-            if (value > 0) {
-                insertInHtml(tempF + "°", ".degrees");
-            } else {
-                insertInHtml(tempC + "°", ".degrees");
-            }
-
-            // 2 day
-            var tempC2 = json.data.weather[1].maxtempC;
-            insertInHtml(tempC2 + "°", "#degrees2");
-
-            // 3 day
-            var tempC3 = json.data.weather[2].maxtempC; 
-            insertInHtml(tempC3 + "°", "#degrees3"); 
-
-            var tempC4 = json.data.weather[3].maxtempC;
-            insertInHtml(tempC3 + "°", "#degrees4");
+            // Day 1
+            tempC1 = json.data.weather[1].maxtempC;
+            tempF1 = json.data.weather[1].maxtempF;
+            
+            // Day 2
+            tempC2 = json.data.weather[2].maxtempC;
+            tempF2 = json.data.weather[2].maxtempF;
+            
+            // Day 3
+            tempC3 = json.data.weather[3].maxtempC;
+            tempF3 = json.data.weather[3].maxtempF;
+            
             initiateSetting();
+            
+            insetTemperature();
         } else {
             insertInHtml("Couldn't find your location",".location");
             insertInHtml(":(",".degrees");
@@ -173,7 +182,7 @@ function parsePosition(position) {
 //Insert data
 function insertInHtml(variable, id) {
     $(id).text(variable);
-};
+}
 //Insert data - END
 
 function settingsToggle(nameId) {
@@ -245,7 +254,7 @@ function checkboxCheck() {
 }
 
 function initiateSetting() {
-    var myStringArray = ["uvIndex","windDir","windChill", "windSpeed","sun"];
+    var myStringArray = ["uvIndex", "windDir", "windChill", "windSpeed", "sun"];
     var arrayLength = myStringArray.length;
     for (var i = 0; i <= arrayLength; i++) {
         if (localStorage.getItem(myStringArray[i]) == "true"){
@@ -255,21 +264,45 @@ function initiateSetting() {
     }
 }
 
+function settingsIcon() {
+    var currentSlide = $('.slide-container').slick("slickCurrentSlide");
+    if (currentSlide !== 0) {
+        toSlide(0);
+        $(".settingsIcon").css("transform", "rotate(180deg)");
+        $(".settingsIcon").toggleClass("active", true);
+    } else {
+        toSlide(1);
+        $(".settingsIcon").css("transform", "rotate(0deg)");
+        $(".settingsIcon").toggleClass("active", false);
+    }
+}
+
+function insetTemperature() {
+    setTimeout(function(){
+        if ($("#degree input:checked").length) {
+            insertInHtml(tempF + "°", ".degrees");
+            insertInHtml(tempF1 + "°", "#degrees1");
+            insertInHtml(tempF2 + "°", "#degrees2");
+            insertInHtml(tempF3 + "°", "#degrees3");
+            console.log(tempF + " - " + tempF1);
+        } else {
+            insertInHtml(tempC + "°", ".degrees");
+            insertInHtml(tempC1 + "°", "#degrees1");
+            insertInHtml(tempC2 + "°", "#degrees2");
+            insertInHtml(tempC3 + "°", "#degrees3");
+        }
+    }, 50);
+}
+
 // Click
 function clickEvents() {
     $(".settingsIcon").click(function () {
-        var currentSlide = $('.slide-container').slick("slickCurrentSlide");
-        if (currentSlide !== 0) {
-            toSlide(0);
-            $(".settingsIcon").css("transform", "rotate(180deg)");
-            $(".settingsIcon").toggleClass("active", true);
-        } else {
-            toSlide(1);
-            $(".settingsIcon").css("transform", "rotate(0deg)");
-            $(".settingsIcon").toggleClass("active", false);
-        };
+        settingsIcon();
     });
-};
+    $("#degree label").click(function () {
+        insetTemperature();
+    });
+}
 // Click - END
 
 // Ready
