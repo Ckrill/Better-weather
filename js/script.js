@@ -192,7 +192,7 @@ function settingsToggle(nameId) {
         windDir = $('<div class="windDir"><img src="img/winddir.svg"><img class="pin" src="img/pin.svg" style="-webkit-transform: rotate(' + winddir + 'deg); -moz-transform: rotate(' + winddir + 'deg); -ms-transform: rotate(' + winddir + 'deg); transform: rotate(' + winddir + 'deg);"><span class="dirABB">' + winddirABB + '</span></div>'),
         windChill = $('<div class="windChill">' + windchill + '°</div>');
     if ($('.' + nameId).length > 0) {
-        $(".optionalInfo ." + nameId).show();
+        $(".optionalInfo ." + nameId + ", .optionalInfo1 ." + nameId + ", .optionalInfo2 ." + nameId + ", .optionalInfo3 ." + nameId).show();
     } else {
         $(".optionalInfo").append(eval(nameId).clone());
         $(".optionalInfo1").append(eval(nameId).clone());
