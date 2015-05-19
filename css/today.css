@@ -40,50 +40,50 @@
 }
 .optionalInfo > div {
     float: right;
-    width: 60px;
+    width: 10%;
     height: 60px;
     margin: 10px;
-    background-color: rgba(0,0,0,.1);
+/*    background-color: rgba(0,0,0,.1);*/
 }
 
-.windDir {
+.graphic {
+    width: 100%;
     position: relative;
-    margin-bottom: 15px;
 }
-.windDir img {
-    width: 45px;
+.graphic img {
+    width: 100%;
 }
-
+.windDir .compass {
+    width: 100%;
+}
 .windDir .pin {
+    width: 100%;
     position: absolute;
-    top: -11px;
-    padding: 14px;
+    top: 0;
 }
 .dirABB {
     font-size: 13px;
     position: absolute;
-    left: 8px;
+    display: block;
+    position: relative;
+    text-align: center;
 }
-.uvIndex { 
-    width: 60px;
-    height: 60px;
+.uvIndex .speedometer {
+    width: 100%;
 }
-
-.uvIndex img + img {
-      position: absolute;
-      top: 10px;
+.uvIndex .speedometer-pin {
+    width: 100%;
+    position: absolute;
+    top: 0;
 }
-
 .uvIndex:after {
     content: 'UV Index';
     display: block;
     font-size: 13px;
-    
+    text-align: center;
 }
 .windChill {
-    text-align: center;
-    width: 60px;
-    height: 60px;       
+    text-align: center;       
 }
 .windChill:before {
     content: 'Feels like';
@@ -94,18 +94,26 @@
     position: relative;
     color: #2D64A3;
 }
+/*
 .windSpeed:hover span, .windSpeed:hover div {
     display: block;
 }
-.windSpeed img {
-    width: 60px;
-    animation: rotate;
+*/
+.windSpeed .fan {
     -webkit-animation: rotate;
-    animation-timing-function: linear;
-    -webkit-animation-timing-function: linear;
-    animation-iteration-count: infinite;
     -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-name: rotate;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+    -ms-animation-name: rotate;
+    -ms-animation-iteration-count: infinite;
+    -ms-animation-timing-function: linear;
+    animation: rotate;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
 }
+/*
 .windSpeed div,.windSpeed span {
     position: absolute;
     text-align: center;
@@ -116,6 +124,7 @@
     margin: auto;
     display: none;
 }
+*/
 .windSpeed span {
     top: 45px;
     font-size: 10px;
@@ -195,5 +204,5 @@
     color: black;
 }
 .hashtag #searchInput{
-    text-indent: 20px;
+    text-indent: 25px;
 }
