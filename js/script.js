@@ -186,11 +186,11 @@ function insertInHtml(variable, id) {
 //Insert data - END
 
 function settingsToggle(nameId) {
-    var uvIndex = $('<div class="uvIndex"><div class="graphic"><img class="speedometer" src="img/speedometer.svg"><img class="speedometer-pin" src="img/speedometer-pin.svg" style="transform: rotate(' + (110 + (uv * 20)) + 'deg);"></div></div>'),
-        sun = $('<div class="sun"><div class="graphic"><img src="img/sunUpDown.svg"></div><div class="sunrise">' + sunrise + '</div><div class="sunset">' + sunset + '</div></div>'),
-        windSpeed = $('<div class="windSpeed"><div class="graphic"><img class="fan" src="img/fan.svg" style="animation-duration: ' + (8 / windspeed) + 's; -webkit-animation-duration: ' + (8 / windspeed) + 's;"></div><div>' + Math.round(windspeed) + '</div><span>m/s</span></div>'),
-        windDir = $('<div class="windDir"><div class="graphic"><img class="compass" src="img/winddir.svg"><img class="pin" src="img/pin.svg" style="-webkit-transform: rotate(' + winddir + 'deg); -moz-transform: rotate(' + winddir + 'deg); -ms-transform: rotate(' + winddir + 'deg); transform: rotate(' + winddir + 'deg);"></div><span class="dirABB">' + winddirABB + '</span></div>'),
-        windChill = $('<div class="windChill">' + windchill + '°</div>');
+    var uvIndex = $('<div class="uvIndex"><div class="graphic"><img class="speedometer" src="img/speedometer.svg"><img class="speedometer-pin" src="img/speedometer-pin.svg" style="transform: rotate(' + (110 + (uv * 20)) + 'deg);"></div><div class="text">UV Index</div></div>'),
+        sun = $('<div class="sun"><div class="graphic"><img src="img/sunUpDown.svg"></div><div class="sunrise text">' + sunrise + '</div><div class="sunset text">' + sunset + '</div></div>'),
+        windSpeed = $('<div class="windSpeed"><div class="graphic"><img class="fan" src="img/fan.svg" style="animation-duration: ' + (8 / windspeed) + 's; -webkit-animation-duration: ' + (8 / windspeed) + 's;"></div><div class="text">' + Math.round(windspeed) + ' m/s</div></div>'),
+        windDir = $('<div class="windDir"><div class="graphic"><img class="compass" src="img/winddir.svg"><img class="pin" src="img/pin.svg" style="-webkit-transform: rotate(' + winddir + 'deg); -moz-transform: rotate(' + winddir + 'deg); -ms-transform: rotate(' + winddir + 'deg); transform: rotate(' + winddir + 'deg);"></div><span class="text">' + winddirABB + '</span></div>'),
+        windChill = $('<div class="windChill"><div class="text">Feels like</div><div class="windChillTemp">' + windchill + '°</div></div>');
     if ($('.' + nameId).length > 0) {
         $(".optionalInfo ." + nameId + ", .optionalInfo1 ." + nameId + ", .optionalInfo2 ." + nameId + ", .optionalInfo3 ." + nameId).show();
     } else {
