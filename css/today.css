@@ -32,19 +32,17 @@
 }
 .optionalInfo {
     position: absolute;
-    bottom: 20px;
+    bottom: 0;
     width: 100%;
     left: 0;
     max-width: none;
     overflow: none;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 .optionalInfo > div {
     float: right;
     width: 20%;
-    height: 60px;
     padding: 10px;
-/*    background-color: rgba(0,0,0,.1);*/
 }
 
 .graphic {
