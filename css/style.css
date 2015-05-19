@@ -93,9 +93,16 @@ ul#bullets {
     text-transform: capitalize;    
     outline: none;
     border: none;
+    color: #428bca;
+    font-weight: 600;
     padding: 16px;
     font-size: 16px;
 }
+#searchInput::-webkit-input-placeholder{
+    color: lightgrey;
+    font-weight: 600;
+}
+
 #searchForm.searchActive {
     top: 0;
 }
