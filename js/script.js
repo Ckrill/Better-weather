@@ -194,7 +194,10 @@ function settingsToggle(nameId) {
     if ($('.' + nameId).length > 0) {
         $(".optionalInfo ." + nameId).show();
     } else {
-        eval(nameId).appendTo(".optionalInfo");
+        $(".optionalInfo").append(eval(nameId).clone());
+        $(".optionalInfo1").append(eval(nameId).clone());
+        $(".optionalInfo2").append(eval(nameId).clone());
+        $(".optionalInfo3").append(eval(nameId).clone());
     }
 }
 
