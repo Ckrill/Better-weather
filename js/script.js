@@ -365,20 +365,23 @@ function insertRain() {
     setTimeout(function () {
         if ($("#precipitation input:checked").length) {
 //            insertInHtml(tempC + "°", ".degrees");
-            rainDay = "day" + 0;
-            if (rain > 0.9) {
-                if (rain > 40) {
-                    rain = 40;
+            if( $('#day0').is(':empty') ) {
+                rainDay = "day" + 0;
+                if (rain > 0.9) {
+                    if (rain > 40) {
+                        rain = 40;
+                    }
+                    new Rain(rainDay, {
+                        angle: 3,
+                        intensity: rain
+                    });
                 }
-                new Rain(rainDay, {
-                    angle: 3,
-                    intensity: rain
-                });
+            }else{
+                $("#day0 svg").show();
+                console.info("Let it rain!");
             }
-            $("#day0").show();
-            console.info("Let it rain!");
         } else {
-            $("#day0").hide();
+            $("#day0 svg").hide();
             console.info("Stahp!");
         }
     }, 50);
