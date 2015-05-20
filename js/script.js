@@ -3,7 +3,7 @@
 /*jslint plusplus: true */
 
 // Settings
-var breakpoint = 750, // unit in px
+var breakpoint = 1023   , // unit in px
 
 // Settings - END
 
@@ -35,7 +35,7 @@ function initiateSlide() {
         variableWidth: true,
         responsive: [
             {
-                breakpoint: 960,
+                breakpoint: breakpoint + 1,
                 settings: {
                     swipe: true
                 }
@@ -66,8 +66,8 @@ function setSlideHeight() {
     var windowHeight = $(window).height();
 //    console.log(windowHeight);
     if ($(window).width() > breakpoint) {
-         $(".page").css("height", (windowHeight-50) + "px");
-    }else{
+         $(".page").css("height", (windowHeight - 50) + "px");
+    } else {
         $(".page").css("height", (windowHeight) + "px");
     }
 }
@@ -77,7 +77,8 @@ function setSlideHeight() {
 function setSlideWidth() {
     var windowWidth = $(window).width();
     if (windowWidth > breakpoint) {
-        $(".page:not(:first-of-type)").css("width", (windowWidth / 2) + "px");
+        $("#today").parent(".page").css("width", (windowWidth / 1.6) + "px");
+        $("#future").parent(".page").css("width", (windowWidth / 2.5) + "px");
         
         var currentSlide = $('.slide-container').slick("slickCurrentSlide");
         if (currentSlide == 2) {

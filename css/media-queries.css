@@ -1,4 +1,12 @@
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 640px) {
+    .optionalInfo .text {
+        font-size: 1rem;
+    }
+    .optionalInfo .windChillTemp {
+        font-size: 3rem;
+    }
+}
+@media screen and (min-width: 1024px) {
     #bullets{
         display: none;
     }
@@ -15,8 +23,27 @@
         display: block;
     }
     .optionalInfo {
-
-        left: 50px;
-        max-width: calc(100% - 70px);
+        max-width: calc(75% - 70px);
+    }
+    .optionalInfo1,
+    .optionalInfo2,
+    .optionalInfo3 {
+        width: 75%;
+    }
+    
+/*
+    .text {
+        font-size: 1rem;
+    }
+*/
+    .optionalInfo .text {
+        font-size: 1rem;
+    }
+    .optionalInfo .windChillTemp {
+        font-size: 3rem;
     }
 }
+
+
+
+    

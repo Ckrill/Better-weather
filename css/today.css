@@ -34,14 +34,24 @@
 .optionalInfo1,
 .optionalInfo2,
 .optionalInfo3 {
-    position: relative;
-    width: 100%;
+    
+    
 }
 .optionalInfo {
     position: absolute;
     right: 0;
     bottom: 0;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    width: 75%;
+}
+.optionalInfo1,
+.optionalInfo2,
+.optionalInfo3 {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    float: right;
 }
 .optionalInfo:after,
 .optionalInfo1:after,
@@ -70,7 +80,7 @@
 .text {
     display: block;
     font-size: .625rem;
-    line-height: .5rem;
+    line-height: .8em;
     text-align: center;
     color: white;
     margin-top: .5em;
