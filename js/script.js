@@ -379,7 +379,7 @@ function insertRain() {
                     }
                     new Rain(rainDay, {
                         angle: 3,
-                        intensity: 1
+                        intensity: rain
                     });
                 }
             }else{
