@@ -42,17 +42,19 @@ function initiateSlide() {
         initialSlide: 1,
         arrows: false,
         infinite: false,
-        swipe: false,
+//        swipe: false,
+        swipe: true,
         accessibility: false,
-        variableWidth: true,
-        responsive: [
-            {
-                breakpoint: breakpoint + 1,
-                settings: {
-                    swipe: true
-                }
-            }
-        ]
+        variableWidth: true
+//        variableWidth: true,
+//        responsive: [
+//            {
+//                breakpoint: breakpoint + 1,
+//                settings: {
+//                    swipe: true
+//                }
+//            }
+//        ]
     });
 }
 // Initiate slider - END
@@ -280,13 +282,16 @@ $("#searchForm").submit(function(e){
 
 
 function searchBar() {
+    console.info("search00");
     $("#searchIcon").click(function() {
+        console.info("search01");
         $("#searchForm").addClass("searchActive");
         $("#searchInput").focus();
-        $( "#searchInput" ).focusout(function() {
-            $( "#searchForm" ).removeClass("searchActive");
+        $("#searchInput").focusout(function() {
+            $("#searchForm").removeClass("searchActive");
         });
     });
+    console.info("search02");
 }
 function checkboxCheck() {
     $('.setting input').change(function(){
@@ -355,17 +360,6 @@ function insertTemperature() {
     }, 50);
 }
 
-// Click
-function clickEvents() {
-    $(".settingsIcon").click(function () {
-        settingsIcon();
-    });
-    $("#degree label").click(function () {
-        insertTemperature();
-    });
-}
-// Click - END
-
 // Mobile Keyboard resize fix 
 function keyboardCheck() {
    if($(document.activeElement).attr('type') === 'search') {
@@ -378,6 +372,17 @@ function keyboardCheck() {
 }
 // Mobile Keyboard resize fix -END
 
+// Click
+function clickEvents() {
+    $(".settingsIcon").click(function () {
+        settingsIcon();
+    });
+    $("#degree label").click(function () {
+        insertTemperature();
+    });
+    searchBar();
+}
+// Click - END
 
 // Ready
 $(document).ready(function () {
@@ -389,7 +394,6 @@ $(document).ready(function () {
     parsePosition(); //getLocation();
     WeekDay();
 //    moveFuture();
-    searchBar();
     checkboxCheck();
     clickEvents();
 });
