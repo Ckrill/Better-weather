@@ -1,10 +1,8 @@
 /* Future */
-#future {
-border-left: 1px solid #3A7BB3;
-}
 .futureDay {
     height: calc(100% / 3);
     border-bottom: 1px solid #3A7BB3;
+    border-left: 1px solid #3A7BB3;
     
     display: table;
     width: 100%;
