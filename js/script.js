@@ -238,11 +238,16 @@ function settingsToggle(nameId, units) {
     if ($('.' + nameId).length > 0) {
         $(".optionalInfo ." + nameId + ", .optionalInfo1 ." + nameId + ", .optionalInfo2 ." + nameId + ", .optionalInfo3 ." + nameId).show();
     } else {
-        $(".optionalInfo").append(eval(nameId).clone());
-        $(".optionalInfo1").append(eval(nameId).clone());
-        $(".optionalInfo2").append(eval(nameId).clone());
-        $(".optionalInfo3").append(eval(nameId).clone());
+        if(nameId==="precipitation"){
+            insertRain();
+        }else{
+            $(".optionalInfo").append(eval(nameId).clone());
+            $(".optionalInfo1").append(eval(nameId).clone());
+            $(".optionalInfo2").append(eval(nameId).clone());
+            $(".optionalInfo3").append(eval(nameId).clone());
+        }
     }
+        
 }
 
 // Weekday handler
@@ -289,6 +294,7 @@ function checkboxCheck() {
     $('.setting input').change(function () {
         var value = this.checked ? 'true' : 'false',
             nameId = $(this).parents('.setting').attr('id');
+        console.log(nameId);
         if (value === "true") {
             localStorage.setItem(nameId, "true");
 //            eval('' + nameId + '(nameId1)');
@@ -373,7 +379,7 @@ function insertRain() {
                     }
                     new Rain(rainDay, {
                         angle: 3,
-                        intensity: rain
+                        intensity: 1
                     });
                 }
             }else{
