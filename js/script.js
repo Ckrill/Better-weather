@@ -174,10 +174,10 @@ function parsePosition(position) {
                     if (rain > 40){
                         rain = 40;
                     }
-                    new Rain(rainDay, {              
-                      angle: 3, 
-                      intensity: rain
-                    });
+//                    new Rain(rainDay, {              
+//                      angle: 3, 
+//                      intensity: rain
+//                    });
                 }
             }
             
