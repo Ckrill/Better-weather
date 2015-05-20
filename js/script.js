@@ -170,14 +170,13 @@ function parsePosition(position) {
                 rain = eval("rainAC"+d);
                 console.log(rain);
                 rainDay = "day"+d;
-                if (rain >0.5){
+                if (rain > 0.9){
                     if (rain > 40){
                         rain = 40;
                     }
                     new Rain(rainDay, {              
                       angle: 3, 
-                      intensity: 10 
-
+                      intensity: rain
                     });
                 }
             }
