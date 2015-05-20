@@ -23,7 +23,8 @@
         display: block;
     }
     .optionalInfo {
-        max-width: calc(75% - 70px);
+        width: 75%;
+        max-width: 500px;
     }
     .optionalInfo1,
     .optionalInfo2,

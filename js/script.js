@@ -3,7 +3,7 @@
 /*jslint plusplus: true */
 
 // Settings
-var breakpoint = 1023   , // unit in px
+var breakpoint = 1023, // unit in px
 
 // Settings - END
 
@@ -32,14 +32,18 @@ var breakpoint = 1023   , // unit in px
     rain6,
     rain7,
     rain8,
-    rain;
+    rain,
+    rainAC0 = 0,
+    rainAC1 = 0,
+    rainAC2 = 0,
+    rainAC3 = 0;
     
 // Vars for weather API - END
 
 // Initiate slider
 function initiateSlide() {
     $('.slide-container').slick({
-        initialSlide: 1,
+        initialSlide: 0,
         arrows: false,
         infinite: false,
 //        swipe: false,
@@ -175,11 +179,11 @@ function parsePosition(position) {
             sunrise = json.data.weather[0].astronomy[0].sunrise;
             sunset = json.data.weather[0].astronomy[0].sunset;
             
-            var rainAC0 = 0,
-                rainAC1 = 0,
-                rainAC2 = 0,
-                rainAC3 = 0,
-                rainDay,
+//            rainAC0 = 0;
+//            rainAC1 = 0;
+//            rainAC2 = 0;
+//            rainAC3 = 0;
+            var rainDay,
                 rainHour;
             for (d = 0; d < 4; d++){
                 for (i = 0; i < 8; i++) {
@@ -187,17 +191,8 @@ function parsePosition(position) {
                     eval("rainAC"+d+ "+=" + Number(rainHour)+";");
                 }
                 rain = eval("rainAC"+d);
-                console.log(rain);
                 rainDay = "day"+d;
-                if (rain > 0.9){
-                    if (rain > 40){
-                        rain = 40;
-                    }
-//                    new Rain(rainDay, {              
-//                      angle: 3, 
-//                      intensity: rain
-//                    });
-                }
+                
             }
             
             // Day 1
@@ -301,7 +296,13 @@ function checkboxCheck() {
             localStorage.setItem(nameId, "true");
 //            eval('' + nameId + '(nameId1)');
             if ($('#' + nameId).hasClass("trueFalse")) {
-                settingsToggle(nameId);
+                var units = "C";
+                if ($("#degree input:checked").length) {
+                    units = "F";
+                } else {
+                    units = "C";
+                }
+                settingsToggle(nameId, units);
             }
         } else {
             localStorage.setItem(nameId, "0");
@@ -311,13 +312,13 @@ function checkboxCheck() {
 }
 
 function initiateSetting() {
-    var myStringArray = ["degree", "uvIndex", "windDir", "windChill", "windSpeed", "sun"];
+    var myStringArray = ["degree", "precipitation", "uvIndex", "windDir", "windChill", "windSpeed", "sun"];
     var arrayLength = myStringArray.length;
     for (var i = 0; i <= arrayLength; i++) {
         if (localStorage.getItem(myStringArray[i]) == "true"){
             $('#' + myStringArray[i] + ' input').prop('checked', true);
             if ($('#' + myStringArray[i]).hasClass("trueFalse")) {
-                var units;
+                var units = "C";
                 if ($("#degree input:checked").length) {
                     units = "F";
                 } else {
@@ -342,6 +343,7 @@ function settingsIcon() {
     }
 }
 
+// Insert temperature
 function insertTemperature() {
     setTimeout(function(){
         if ($("#degree input:checked").length) {
@@ -359,6 +361,33 @@ function insertTemperature() {
         }
     }, 50);
 }
+// Insert temperature - END
+
+// Insert rain
+function insertRain() {
+    setTimeout(function(){
+        if ($("#precipitation input:checked").length) {
+//            insertInHtml(tempC + "°", ".degrees");
+            rainDay = "day"+0;
+            if (rain > 0.9){
+                    if (rain > 40){
+                        rain = 40;
+                    }
+                    new Rain(rainDay, {              
+                      angle: 3, 
+                      intensity: rain
+                    });
+                }
+            $("#day0").show();
+            console.info("Let it rain!");
+        } else {
+            $("#day0").hide();
+            console.info("Stahp!");
+        }
+    }, 50);
+}
+// Insert rain - END
+
 
 // Mobile Keyboard resize fix 
 function keyboardCheck() {
@@ -379,6 +408,9 @@ function clickEvents() {
     });
     $("#degree label").click(function () {
         insertTemperature();
+    });
+    $("#precipitation label").click(function () {
+        insertRain();
     });
     searchBar();
 }
