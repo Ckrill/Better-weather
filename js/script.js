@@ -240,6 +240,7 @@ function settingsToggle(nameId, units) {
     } else {
         if(nameId==="precipitation"){
             insertRain();
+            alert("settTogg");
         }else{
             $(".optionalInfo").append(eval(nameId).clone());
             $(".optionalInfo1").append(eval(nameId).clone());
@@ -310,6 +311,8 @@ function checkboxCheck() {
         } else {
             localStorage.setItem(nameId, "0");
             $('.' + nameId).hide();
+            $('.' + nameId+'2').hide();
+            alert("hide please");
         }
     });
 }
@@ -368,22 +371,24 @@ function insertTemperature() {
 
 // Insert rain
 function insertRain() {
+    console.log("insert rain");
     setTimeout(function () {
         if ($("#precipitation input:checked").length) {
+            console.log("if");
 //            insertInHtml(tempC + "°", ".degrees");
             if( $('#day0').is(':empty') ) {
                 rainDay = "day" + 0;
-                if (rain > 0.9) {          //denne er vist ikke day0s værdi, men day3
+                //if (rain > 0.9) {          //denne er vist ikke day0s værdi, men day3
                     if (rain > 40) {
                         rain = 40;
                     }
                     new Rain(rainDay, {
                         angle: 3,
-                        intensity: rain
+                        intensity: 10
                     });
-                }
+                //}
             }else{
-                $("#day0 svg").show();
+                $(".precipitation2").show();
                 console.info("Let it rain!");
             }
         } else {
@@ -415,7 +420,7 @@ function clickEvents() {
         insertTemperature();
     });
     $("#precipitation label").click(function () {
-        insertRain();
+        //insertRain();
     });
     searchBar();
 }
