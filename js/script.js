@@ -342,7 +342,7 @@ function settingsIcon() {
 
 // Insert temperature
 function insertTemperature() {
-    setTimeout(function(){
+    setTimeout(function () {
         if ($("#degree input:checked").length) {
             insertInHtml(tempF + "°", ".degrees");
             insertInHtml(tempF1 + "°", "#degrees1");
@@ -362,19 +362,19 @@ function insertTemperature() {
 
 // Insert rain
 function insertRain() {
-    setTimeout(function(){
+    setTimeout(function () {
         if ($("#precipitation input:checked").length) {
 //            insertInHtml(tempC + "°", ".degrees");
-            rainDay = "day"+0;
-            if (rain > 0.9){
-                    if (rain > 40){
-                        rain = 40;
-                    }
-                    new Rain(rainDay, {              
-                      angle: 3, 
-                      intensity: rain
-                    });
+            rainDay = "day" + 0;
+            if (rain > 0.9) {
+                if (rain > 40) {
+                    rain = 40;
                 }
+                new Rain(rainDay, {
+                    angle: 3,
+                    intensity: rain
+                });
+            }
             $("#day0").show();
             console.info("Let it rain!");
         } else {
@@ -388,13 +388,12 @@ function insertRain() {
 
 // Mobile Keyboard resize fix 
 function keyboardCheck() {
-   if($(document.activeElement).attr('type') === 'search') {
-       setSlideWidth();
-   } else {
-       setSlideHeight();
-       setSlideWidth();
-   }
-    
+    if ($(document.activeElement).attr('type') === 'search') {
+        setSlideWidth();
+    } else {
+        setSlideHeight();
+        setSlideWidth();
+    }
 }
 // Mobile Keyboard resize fix -END
 
@@ -443,7 +442,7 @@ $(window).resize(function () {
 
 // Arrow keys
 $(document).keyup(function (e) {
-	if(e.which == 40) { // Down
+	if (e.which === 40) { // Down
         // Test here
 	}
 });
