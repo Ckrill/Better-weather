@@ -92,7 +92,7 @@ function setSlideHeight() {
     var windowHeight = $(window).height();
 //    console.log(windowHeight);
     if ($(window).width() > breakpoint) {
-         $(".page").css("height", (windowHeight - 50) + "px");
+         $(".page").css("height", (windowHeight - 52) + "px");
     } else {
         $(".page").css("height", (windowHeight) + "px");
     }
