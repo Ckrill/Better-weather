@@ -197,8 +197,11 @@ function parsePosition(position) {
             tempF3 = json.data.weather[3].maxtempF;
             
             initiateSetting();
-            insetTemperature();
+            insertTemperature();
             
+            for (d = 0; d < 4; d++){ // Insert rain
+                insertInHtml(Math.round(eval("rainAC"+d)) + " mm", "#precipitation" + d);
+            }
              
         } else {
             insertInHtml("Couldn't find your location",".location");
@@ -314,7 +317,7 @@ function settingsIcon() {
     }
 }
 
-function insetTemperature() {
+function insertTemperature() {
     setTimeout(function(){
         if ($("#degree input:checked").length) {
             insertInHtml(tempF + "°", ".degrees");
@@ -337,7 +340,7 @@ function clickEvents() {
         settingsIcon();
     });
     $("#degree label").click(function () {
-        insetTemperature();
+        insertTemperature();
     });
 }
 // Click - END
