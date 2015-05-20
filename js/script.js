@@ -367,7 +367,7 @@ function insertRain() {
 //            insertInHtml(tempC + "°", ".degrees");
             if( $('#day0').is(':empty') ) {
                 rainDay = "day" + 0;
-                if (rain > 0.9) {
+                if (rain > 0.9) {          //denne er vist ikke day0s værdi, men day3
                     if (rain > 40) {
                         rain = 40;
                     }
