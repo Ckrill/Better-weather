@@ -72,22 +72,22 @@ function initiateBullets() {
     $('.slide-container').on('afterChange', function (event, slick, direction) {
         var currentSlide = $('.slide-container').slick("slickCurrentSlide");
         $("#bullets li").toggleClass("active", false);
-        $("#bullets li:nth-child(" + (currentSlide + 1) + ")" ).toggleClass("active", true);
+        $("#bullets li:nth-child(" + (currentSlide + 1) + ")").toggleClass("active", true);
     });
 }
 // Initiate bullets - END
 
 // Go to slide
-function toSlide(slideNumb){
+function toSlide(slideNumb) {
     $(".slide-container").slick("slickGoTo", slideNumb);
 }
 // Go to slide - END
 
 function loadingAnimation() {
-    if(window.location.hash) {
+    if (window.location.hash) {
         $("html").addClass("hashtag");
-        $("#searchForm span").click(function() {
-             window.location = document.location.href.replace(location.hash , "" );
+        $("#searchForm span").click(function () {
+            window.location = document.location.href.replace(location.hash, "" );
         });
     }
 }
@@ -98,7 +98,7 @@ function setSlideHeight() {
     var windowHeight = $(window).height();
 //    console.log(windowHeight);
     if ($(window).width() > breakpoint) {
-         $(".page").css("height", (windowHeight - 52) + "px");
+        $(".page").css("height", (windowHeight - 52) + "px");
     } else {
         $(".page").css("height", (windowHeight) + "px");
     }
@@ -113,7 +113,7 @@ function setSlideWidth() {
         $("#future").parent(".page").css("width", (windowWidth / 2.5) + "px");
         
         var currentSlide = $('.slide-container').slick("slickCurrentSlide");
-        if (currentSlide == 2) {
+        if (currentSlide === 2) {
             toSlide(1); // if slider is on future go back to today
         }
     } else {
@@ -124,12 +124,12 @@ function setSlideWidth() {
 
 // Get position
 function getLocation() {
-    if(window.location.hash){
+    if (window.location.hash) {
         parsePosition();
-    }else{
+    } else {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(parsePosition);
-        } else { 
+        } else {
             alert("Geolocation is not supported by this browser.");
         }
     }
@@ -139,17 +139,17 @@ function getLocation() {
 //Parse position
 function parsePosition(position) {
     var wwo = "http://api.worldweatheronline.com/free/v2/weather.ashx?q=",
-    mode = "&format=json&num_of_days=4&includelocation=yes",
-    key =  "&key=82594deb029ae9095181418b6edfd";
+        mode = "&format=json&num_of_days=4&includelocation=yes",
+        key =  "&key=82594deb029ae9095181418b6edfd";
     if (window.location.hash) {
         var query = window.location.hash.replace("#", ""),
-        url = wwo+query+mode+key;
+            url = wwo + query + mode + key;
         $("#searchInput").val(window.location.hash.replace("#", ""));
     } else {
         var /*lati = position.coords.latitude,
         longi = position.coords.longitude,
         url = wwo+ lati+","+longi+mode+key; */
-        url = wwo+ 55.654385+","+12.5915103+mode+key;
+        url = wwo + 55.654385 + "," + 12.5915103 + mode + key;
     }
 
     $.getJSON(url, function (json) {
@@ -161,7 +161,7 @@ function parsePosition(position) {
                 country = json.data.nearest_area[0].country[0].value,
                 location = cityName + ", " + country;
             
-            insertInHtml(location,".location");
+            insertInHtml(location, ".location");
             
             // Weather
             
@@ -185,13 +185,13 @@ function parsePosition(position) {
 //            rainAC3 = 0;
             var rainDay,
                 rainHour;
-            for (d = 0; d < 4; d++){
+            for (d = 0; d < 4; d++) {
                 for (i = 0; i < 8; i++) {
                     rainHour = json.data.weather[d].hourly[i].precipMM;
-                    eval("rainAC"+d+ "+=" + Number(rainHour)+";");
+                    eval("rainAC" + d + "+=" + Number(rainHour) + ";");
                 }
-                rain = eval("rainAC"+d);
-                rainDay = "day"+d;
+                rain = eval("rainAC" + d);
+                rainDay = "day" + d;
                 
             }
             
@@ -210,13 +210,13 @@ function parsePosition(position) {
             initiateSetting();
             insertTemperature();
             
-            for (d = 0; d < 4; d++){ // Insert rain
-                insertInHtml(Math.round(eval("rainAC"+d)) + " mm", "#precipitation" + d);
+            for (d = 0; d < 4; d++) { // Insert rain
+                insertInHtml(Math.round(eval("rainAC" + d)) + " mm", "#precipitation" + d);
             }
              
         } else {
-            insertInHtml("Couldn't find your location",".location");
-            insertInHtml(":(",".degrees");
+            insertInHtml("Couldn't find your location", ".location");
+            insertInHtml(":(", ".degrees");
         }
         $(".loadingScreen").fadeOut();
     });
@@ -247,10 +247,10 @@ function settingsToggle(nameId, units) {
 
 // Weekday handler
 function WeekDay() {
-    x = 1;
-    for (i = 0; i < 2; i++) { 
-        var d = new Date();
-        var weekday = new Array(7);
+    var x = 1;
+    for (i = 0; i < 2; i++) {
+        var d = new Date(),
+            weekday = new Array(7);
         weekday[0] = "Sunday";
         weekday[1] = "Monday";
         weekday[2] = "Tuesday";
@@ -268,7 +268,7 @@ function WeekDay() {
 }
 // Weekday handler - END
 
-$("#searchForm").submit(function(e){
+$("#searchForm").submit(function (e) {
     var hashtag = $("#searchInput").val();
     window.location.href = '#' + hashtag;
     location.reload();
@@ -277,22 +277,19 @@ $("#searchForm").submit(function(e){
 
 
 function searchBar() {
-    console.info("search00");
-    $("#searchIcon").click(function() {
-        console.info("search01");
+    $("#searchIcon").click(function () {
         $("#searchForm").addClass("searchActive");
         $("#searchInput").focus();
-        $("#searchInput").focusout(function() {
+        $("#searchInput").focusout(function () {
             $("#searchForm").removeClass("searchActive");
         });
     });
-    console.info("search02");
 }
 function checkboxCheck() {
-    $('.setting input').change(function(){
-        var value = this.checked ? 'true' : 'false';
-        var nameId = $(this).parents('.setting').attr('id');
-        if (value == "true" ) {
+    $('.setting input').change(function () {
+        var value = this.checked ? 'true' : 'false',
+            nameId = $(this).parents('.setting').attr('id');
+        if (value === "true") {
             localStorage.setItem(nameId, "true");
 //            eval('' + nameId + '(nameId1)');
             if ($('#' + nameId).hasClass("trueFalse")) {
@@ -306,14 +303,14 @@ function checkboxCheck() {
             }
         } else {
             localStorage.setItem(nameId, "0");
-            $('.' + nameId + '').hide();
+            $('.' + nameId).hide();
         }
     });
 }
 
 function initiateSetting() {
-    var myStringArray = ["degree", "precipitation", "uvIndex", "windDir", "windChill", "windSpeed", "sun"];
-    var arrayLength = myStringArray.length;
+    var myStringArray = ["degree", "precipitation", "uvIndex", "windDir", "windChill", "windSpeed", "sun"],
+        arrayLength = myStringArray.length;
     for (var i = 0; i <= arrayLength; i++) {
         if (localStorage.getItem(myStringArray[i]) == "true"){
             $('#' + myStringArray[i] + ' input').prop('checked', true);
