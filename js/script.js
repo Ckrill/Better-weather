@@ -196,6 +196,7 @@ function parsePosition(position) {
             tempF3 = json.data.weather[3].maxtempF;
             
             initiateSetting();
+            insetTemperature();
             
              
         } else {
