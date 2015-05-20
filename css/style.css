@@ -110,4 +110,13 @@ ul#bullets {
     display: none;
 }
 
+#today svg:first-child, .futureDay svg:first-child {
+    position: absolute;
+    width: 100%;
+}
+#day0{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
 /* Interface - END */

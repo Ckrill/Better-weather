@@ -22,7 +22,17 @@ var breakpoint = 1023   , // unit in px
     windspeed,
     uv,
     sunrise,
-    sunset;
+    sunset,
+    rain1, //slet?
+    rain2,
+    rain3,
+    rain4,
+    rain5,
+    rain6,
+    rain7,
+    rain8,
+    rain;
+    
 // Vars for weather API - END
 
 // Initiate slider
@@ -146,16 +156,34 @@ function parsePosition(position) {
             sunrise = json.data.weather[0].astronomy[0].sunrise;
             sunset = json.data.weather[0].astronomy[0].sunset;
             
-            var rain1 = json.data.weather[0].hourly[0].precipMM,
-                rain2 = json.data.weather[0].hourly[1].precipMM,
-                rain3 = json.data.weather[0].hourly[2].precipMM,
-                rain4 = json.data.weather[0].hourly[3].precipMM,
-                rain5 = json.data.weather[0].hourly[4].precipMM,
-                rain6 = json.data.weather[0].hourly[5].precipMM,
-                rain7 = json.data.weather[0].hourly[6].precipMM,
-                rain8 = json.data.weather[0].hourly[7].precipMM,
-                rain = Number(rain1) + Number(rain2) + Number(rain3) + Number(rain4) + Number(rain5) + Number(rain6) + Number(rain7);
+            var rainAC0 = 0,
+                rainAC1 = 0,
+                rainAC2 = 0,
+                rainAC3 = 0,
+                rainDay,
+                rainHour;
+            for (d = 0; d < 4; d++){
+                for (i = 0; i < 8; i++) {
+                    rainHour = json.data.weather[d].hourly[i].precipMM;
+                    eval("rainAC"+d+ "+=" + Number(rainHour)+";");
+                }
+                rain = eval("rainAC"+d);
+                console.log(rain);
+                rainDay = "day"+d;
+                if (rain >0.5){
+                    if (rain > 40){
+                        rain = 40;
+                    }
+                    new Rain(rainDay, {              
+                      angle: 3, 
+                      intensity: 10 
 
+                    });
+                }
+            }
+            
+            
+            
             // Day 1
             tempC1 = json.data.weather[1].maxtempC;
             tempF1 = json.data.weather[1].maxtempF;
@@ -170,7 +198,7 @@ function parsePosition(position) {
             
             initiateSetting();
             
-            insetTemperature();
+             
         } else {
             insertInHtml("Couldn't find your location",".location");
             insertInHtml(":(",".degrees");
