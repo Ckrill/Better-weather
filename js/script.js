@@ -42,6 +42,7 @@ function initiateSlide() {
         arrows: false,
         infinite: false,
         swipe: false,
+        accessibility: false,
         variableWidth: true,
         responsive: [
             {
