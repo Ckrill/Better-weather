@@ -18,7 +18,8 @@ var breakpoint = 1023   , // unit in px
     tempF3,
     winddir,
     winddirABB,
-    windchill,
+    windchillC,
+    windchillF,
     windspeed,
     uv,
     sunrise,
@@ -150,7 +151,8 @@ function parsePosition(position) {
             //wind = json.data.weather[0].hourly[4].windspeedKmph;
             winddir = json.data.weather[0].hourly[4].winddirDegree;
             winddirABB = json.data.weather[0].hourly[4].winddir16Point;
-            windchill = json.data.weather[0].hourly[4].WindChillC;
+            windchillC = json.data.weather[0].hourly[4].WindChillC;
+            windchillF = json.data.weather[0].hourly[4].WindChillF;
             windspeed = json.data.weather[0].hourly[4].windspeedKmph;
             windspeed = (windspeed * 1000) / 3600; // m/s
             uv = json.data.weather[0].uvIndex;
@@ -181,8 +183,6 @@ function parsePosition(position) {
 //                    });
                 }
             }
-            
-            
             
             // Day 1
             tempC1 = json.data.weather[1].maxtempC;
@@ -218,12 +218,12 @@ function insertInHtml(variable, id) {
 }
 //Insert data - END
 
-function settingsToggle(nameId) {
+function settingsToggle(nameId, units) {
     var uvIndex = $('<div class="uvIndex"><div class="graphic"><img class="speedometer" src="img/speedometer.svg"><img class="speedometer-pin" src="img/speedometer-pin.svg" style="transform: rotate(' + (110 + (uv * 20)) + 'deg);"></div><div class="text">UV Index</div></div>'),
         sun = $('<div class="sun"><div class="graphic"><img src="img/sunUpDown.svg"></div><div class="sunrise text">' + sunrise + '</div><div class="sunset text">' + sunset + '</div></div>'),
         windSpeed = $('<div class="windSpeed"><div class="graphic"><img class="fan" src="img/fan.svg" style="animation-duration: ' + (8 / windspeed) + 's; -webkit-animation-duration: ' + (8 / windspeed) + 's;"></div><div class="text">' + Math.round(windspeed) + ' m/s</div></div>'),
         windDir = $('<div class="windDir"><div class="graphic"><img class="compass" src="img/winddir.svg"><img class="pin" src="img/pin.svg" style="-webkit-transform: rotate(' + winddir + 'deg); -moz-transform: rotate(' + winddir + 'deg); -ms-transform: rotate(' + winddir + 'deg); transform: rotate(' + winddir + 'deg);"></div><span class="text">' + winddirABB + '</span></div>'),
-        windChill = $('<div class="windChill"><div class="text">Feels like</div><div class="windChillTemp">' + windchill + '°</div></div>');
+        windChill = $('<div class="windChill"><div class="text">Feels like</div><div class="windChillTemp">' + eval("windchill" + units) + '°</div></div>');
     if ($('.' + nameId).length > 0) {
         $(".optionalInfo ." + nameId + ", .optionalInfo1 ." + nameId + ", .optionalInfo2 ." + nameId + ", .optionalInfo3 ." + nameId).show();
     } else {
@@ -298,7 +298,13 @@ function initiateSetting() {
         if (localStorage.getItem(myStringArray[i]) == "true"){
             $('#' + myStringArray[i] + ' input').prop('checked', true);
             if ($('#' + myStringArray[i]).hasClass("trueFalse")) {
-                settingsToggle(myStringArray[i]);
+                var units;
+                if ($("#degree input:checked").length) {
+                    units = "F";
+                } else {
+                    units = "C";
+                }
+                settingsToggle(myStringArray[i], units);
             }
         }
     }
@@ -324,12 +330,13 @@ function insertTemperature() {
             insertInHtml(tempF1 + "°", "#degrees1");
             insertInHtml(tempF2 + "°", "#degrees2");
             insertInHtml(tempF3 + "°", "#degrees3");
-            console.log(tempF + " - " + tempF1);
+            insertInHtml(windchillF + "°", ".windChillTemp");
         } else {
             insertInHtml(tempC + "°", ".degrees");
             insertInHtml(tempC1 + "°", "#degrees1");
             insertInHtml(tempC2 + "°", "#degrees2");
             insertInHtml(tempC3 + "°", "#degrees3");
+            insertInHtml(windchillC + "°", ".windChillTemp");
         }
     }, 50);
 }
