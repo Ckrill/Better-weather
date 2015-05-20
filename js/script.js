@@ -105,7 +105,7 @@ function setSlideHeight() {
 function setSlideWidth() {
     var windowWidth = $(window).width();
     if (windowWidth > breakpoint) {
-        $("#today").parent(".page").css("width", (windowWidth / 1.6) + "px");
+        $("#today").parent(".page").css("width", (windowWidth / 1.6666667) + "px");
         $("#future").parent(".page").css("width", (windowWidth / 2.5) + "px");
         
         var currentSlide = $('.slide-container').slick("slickCurrentSlide");
