@@ -57,6 +57,20 @@ function initiateSlide() {
 }
 // Initiate slider - END
 
+// Initiate bullets
+function initiateBullets() {
+    $("#bullets li").click(function () {
+        var page = $(this).index("li");
+        $('.slide-container').slick("slickGoTo", page);
+    });
+    $('.slide-container').on('afterChange', function (event, slick, direction) {
+        var currentSlide = $('.slide-container').slick("slickCurrentSlide");
+        $("#bullets li").toggleClass("active", false);
+        $("#bullets li:nth-child(" + (currentSlide + 1) + ")" ).toggleClass("active", true);
+    });
+}
+// Initiate bullets - END
+
 // Go to slide
 function toSlide(slideNumb){
     $(".slide-container").slick("slickGoTo", slideNumb);
@@ -371,6 +385,7 @@ $(document).ready(function () {
     initiateSlide();
     setSlideHeight();
     setSlideWidth();
+    initiateBullets();
     parsePosition(); //getLocation();
     WeekDay();
 //    moveFuture();
