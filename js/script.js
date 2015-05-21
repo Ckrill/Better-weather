@@ -213,9 +213,9 @@ function parsePosition(position) {
                 eval("sunset" + d + " = json.data.weather[" + d + "].astronomy[0].sunset;");
                 eval("uv" + d + " = json.data.weather[" + d + "].uvIndex;");
                 
-                eval("windspeedK" + d + " = json.data.weather[" + d + "].hourly[4].windspeedKmph;");
-                eval("windspeedK" + d + " =  + (windspeedK" + d + " * 1000) / 3600;"); // m/s
-                eval("windspeedM" + d + " = json.data.weather[" + d + "].hourly[4].windspeedMiles;");
+                eval("windspeedC" + d + " = json.data.weather[" + d + "].hourly[4].windspeedKmph;");
+                eval("windspeedC" + d + " =  + (windspeedC" + d + " * 1000) / 3600;"); // m/s
+                eval("windspeedF" + d + " = json.data.weather[" + d + "].hourly[4].windspeedMiles;");
 //                eval("windspeedM" + d + " =  + (windspeedK" + d + " * 1000) / 3600;"); // m/s // This should be changed to miles, but what do Americans use?
                 
                 eval("windchillC" + d + " = json.data.weather[" + d + "].hourly[4].WindChillC;");
@@ -242,7 +242,7 @@ function parsePosition(position) {
             insertTemperature();
             
             for (d = 0; d < days; d++) { // Insert rain
-                insertInHtml(Math.floor(eval("rainAC" + d)) + "<span class='units'> mm</span>", "#precipitation" + d);
+//                insertInHtml(Math.floor(eval("rainAC" + d)) + "<span class='units'> mm</span>", "#precipitation" + d);
             }
              
         } else {
@@ -262,10 +262,15 @@ function insertInHtml(variable, id) {
 
 function settingsToggle(nameId, units) {
     for (d = 0; d < days; d++) {
-//        console.log(nameId + " - - - " + units);
+        var windForceUnit;
+        if (units === "C") {
+            windForceUnit = "m/s";
+        } else {
+            windForceUnit = "mph";
+        }
         var uvIndex = $('<div class="uvIndex"><div class="graphic"><img class="speedometer" src="img/speedometer.svg"><img class="speedometer-pin" src="img/speedometer-pin.svg" style="transform: rotate(' + (110 + (eval("uv" + d) * 20)) + 'deg); -webkit-transform: rotate(' + (110 + (eval("uv" + d) * 20)) + 'deg);"></div><div class="text">UV Index</div></div>'),
             sun = $('<div class="sun"><div class="graphic"><img src="img/sunUpDown.svg"></div><div class="sunrise text">' + eval("sunrise" + d) + '</div><div class="sunset text">' + eval("sunset" + d) + '</div></div>'),
-            windSpeed = $('<div class="windSpeed"><div class="graphic"><img class="fan" src="img/fan.svg" style="animation-duration: ' + (8 / eval("windspeedK" + d)) + 's; -webkit-animation-duration: ' + (8 / eval("windspeedK" + d)) + 's;"></div><div class="text">' + Math.round(eval("windspeedK" + d)) + ' m/s</div></div>'),
+            windSpeed = $('<div class="windSpeed"><div class="graphic"><img class="fan" src="img/fan.svg" style="animation-duration: ' + (8 / eval("windspeedC" + d)) + 's; -webkit-animation-duration: ' + (8 / eval("windspeedC" + d)) + 's;"></div><div class="text">' + Math.round(eval("windspeed" + units + d)) + ' ' + windForceUnit + '</div></div>'),
             windDir = $('<div class="windDir"><div class="graphic"><img class="compass" src="img/winddir.svg"><img class="pin" src="img/pin.svg" style="-webkit-transform: rotate(' + eval("winddir" + d) + 'deg); -moz-transform: rotate(' + eval("winddir" + d) + 'deg); -ms-transform: rotate(' + eval("winddir" + d) + 'deg); transform: rotate(' + eval("winddir" + d) + 'deg);"></div><span class="text">' + eval("winddirABB" + d) + '</span></div>'),
             windChill = $('<div class="windChill"><div class="text">Feels like</div><div class="windChillTemp">' + eval("windchill" + units + d) + '</div></div>');
         if ($(".optionalInfo" + d + " ." + nameId).length > 0) {
@@ -385,10 +390,12 @@ function insertTemperature() {
                 insertInHtml(eval("tempF" + d) + "°", "#degrees" + d);
                 insertInHtml(eval("windchillF" + d), ".optionalInfo" + d + " .windChillTemp");
                 insertInHtml(eval("rainACF" + d) + "<span class='units'> in</span>", " #precipitation" + d);
+                insertInHtml(Math.round(eval("windspeedF" + d)) + " mph", " .optionalInfo" + d + " .windSpeed .text");
             } else {
                 insertInHtml(eval("tempC" + d) + "°", "#degrees" + d);
                 insertInHtml(eval("windchillC" + d), ".optionalInfo" + d + " .windChillTemp");
                 insertInHtml(eval("rainACC" + d) + "<span class='units'> mm</span>", " #precipitation" + d);
+                insertInHtml(Math.round(eval("windspeedC" + d)) + " m/s", " .optionalInfo" + d + " .windSpeed .text");
             }
         }
     }, 50);
