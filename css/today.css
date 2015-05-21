@@ -30,11 +30,27 @@
 #today .settingsIcon.active:hover {
     transform: rotate(120deg) !important;
 }
+.permanentInfo {
+    
+}
+
+#degrees0,
+#degrees1,
+#degrees2,
+#degrees3 {
+    margin-right: .5em;
+}
+#precipitation0,
+#precipitation1,
+#precipitation2,
+#precipitation3 {
+    margin-left: .5em;
+}
+
 .optionalInfo0,
 .optionalInfo1,
 .optionalInfo2,
 .optionalInfo3 {
-    
     
 }
 .optionalInfo0 {
