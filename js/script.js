@@ -186,7 +186,7 @@ function parsePosition(position) {
     }
 
     $.getJSON(url, function (json) {
-        console.log(json);
+//        console.log(json);
         if (!json.data.hasOwnProperty('error')) {
             
             // Location
@@ -231,7 +231,7 @@ function parsePosition(position) {
             insertTemperature();
             
             for (d = 0; d < days; d++) { // Insert rain
-                insertInHtml(Math.floor(eval("rainAC" + d)) + "<span class='units'>mm</span>", "#precipitation" + d);
+                insertInHtml(Math.floor(eval("rainAC" + d)) + "<span class='units'> mm</span>", "#precipitation" + d);
             }
              
         } else {
@@ -251,11 +251,12 @@ function insertInHtml(variable, id) {
 
 function settingsToggle(nameId, units) {
     for (d = 0; d < days; d++) {
+//        console.log(nameId + " - - - " + units);
         var uvIndex = $('<div class="uvIndex"><div class="graphic"><img class="speedometer" src="img/speedometer.svg"><img class="speedometer-pin" src="img/speedometer-pin.svg" style="transform: rotate(' + (110 + (eval("uv" + d) * 20)) + 'deg);"></div><div class="text">UV Index</div></div>'),
             sun = $('<div class="sun"><div class="graphic"><img src="img/sunUpDown.svg"></div><div class="sunrise text">' + eval("sunrise" + d) + '</div><div class="sunset text">' + eval("sunset" + d) + '</div></div>'),
             windSpeed = $('<div class="windSpeed"><div class="graphic"><img class="fan" src="img/fan.svg" style="animation-duration: ' + (8 / eval("windspeedK" + d)) + 's; -webkit-animation-duration: ' + (8 / eval("windspeedK" + d)) + 's;"></div><div class="text">' + Math.round(eval("windspeedK" + d)) + ' m/s</div></div>'),
             windDir = $('<div class="windDir"><div class="graphic"><img class="compass" src="img/winddir.svg"><img class="pin" src="img/pin.svg" style="-webkit-transform: rotate(' + eval("winddir" + d) + 'deg); -moz-transform: rotate(' + eval("winddir" + d) + 'deg); -ms-transform: rotate(' + eval("winddir" + d) + 'deg); transform: rotate(' + eval("winddir" + d) + 'deg);"></div><span class="text">' + eval("winddirABB" + d) + '</span></div>'),
-            windChill = $('<div class="windChill"><div class="text">Feels like</div><div class="windChillTemp">' + eval("windchill" + units + d) + '°</div></div>');
+            windChill = $('<div class="windChill"><div class="text">Feels like</div><div class="windChillTemp">' + eval("windchill" + units + d) + '</div></div>');
         if ($(".optionalInfo" + d + " ." + nameId).length > 0) {
             $(".optionalInfo" + d + " ." + nameId).show();
         } else {
@@ -312,7 +313,7 @@ function checkboxCheck() {
     $('.setting input').change(function () {
         var value = this.checked ? 'true' : 'false',
             nameId = $(this).parents('.setting').attr('id');
-        console.log(nameId);
+//        console.log(nameId);
         if (value === "true") {
             localStorage.setItem(nameId, "true");
 //            eval('' + nameId + '(nameId1)');
@@ -368,16 +369,14 @@ function settingsIcon() {
 // Insert temperature
 function insertTemperature() {
     setTimeout(function () {
-        if ($("#degree input:checked").length) {
-            insertInHtml(tempF0 + "°", ".degrees");
-            insertInHtml(tempF1 + "°", "#degrees1");
-            insertInHtml(tempF2 + "°", "#degrees2");
-            insertInHtml(tempF3 + "°", "#degrees3");
-        } else {
-            insertInHtml(tempC0 + "°", ".degrees");
-            insertInHtml(tempC1 + "°", "#degrees1");
-            insertInHtml(tempC2 + "°", "#degrees2");
-            insertInHtml(tempC3 + "°", "#degrees3");
+        for (d = 0; d < days; d++) {
+            if ($("#degree input:checked").length) {
+                insertInHtml(eval("tempF" + d) + "°", "#degrees" + d);
+                insertInHtml(eval("windchillF" + d), ".optionalInfo" + d + " .windChillTemp");
+            } else {
+                insertInHtml(eval("tempC" + d) + "°", "#degrees" + d);
+                insertInHtml(eval("windchillC" + d), ".optionalInfo" + d + " .windChillTemp");
+            }
         }
     }, 50);
 }
@@ -393,7 +392,7 @@ function insertRain() {
                 if( $('#day'+d).is(':empty') ) {
                     rainDay = "day" + d;
                     rainAC = eval("rainAC"+d);
-                    console.log(rainAC);
+//                    console.log(rainAC);
                     if (rainAC > 0.9) {          //denne er vist ikke day0s værdi, men day3
                         if (rainAC > 40) {
                             rainAC = 40;
@@ -405,11 +404,11 @@ function insertRain() {
                     }
                 }else{
                     $(".precipitation2").show();
-                    console.info("Show rain!");
+//                    console.info("Show rain!");
                 }
             } else {
                 $("#day0 svg").hide();
-                console.info("Stahp!");
+//                console.info("Stahp!");
             }
         }
     }, 50);

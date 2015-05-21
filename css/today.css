@@ -105,6 +105,10 @@
     font-size: 2rem;
     text-align: center;
 }
+.windChillTemp:after {
+    content: "\00B0";
+    position: absolute;
+}
 .windSpeed .fan {
     -webkit-animation: rotate;
     -webkit-animation-iteration-count: infinite;

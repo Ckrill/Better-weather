@@ -28,6 +28,7 @@ body {
 .page {
     background: #428bca;
     overflow-y: auto;
+    overflow-x: hidden;
     /*-webkit-backface-visibility: hidden;
     backface-visibility: hidden;*/
 }
