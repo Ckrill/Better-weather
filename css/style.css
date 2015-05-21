@@ -127,4 +127,10 @@ ul#bullets {
 .units {
     font-size: .5em;
 }
+/* Safari fixes */
+input[type=search] {
+   -moz-appearance:none;
+   -webkit-appearance:none;
+}
+
 /* Interface - END */
