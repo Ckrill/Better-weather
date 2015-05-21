@@ -97,6 +97,7 @@ ul#bullets {
     font-weight: 600;
     padding: 16px;
     font-size: 16px;
+    line-height: 1.25em;
 }
 #searchInput::-webkit-input-placeholder{
     color: lightgrey;
@@ -113,6 +114,7 @@ ul#bullets {
 #today svg:first-child, .futureDay svg:first-child {
     position: absolute;
     width: 100%;
+    height: 100%;
 }
 #day0, #day1, #day2, #day3{
     position: absolute;
