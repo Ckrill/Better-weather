@@ -5,6 +5,7 @@
     border-left: 1px solid #3A7BB3;
     
     display: table;
+    position: relative;
     width: 100%;
     font-size: 22px;
 }

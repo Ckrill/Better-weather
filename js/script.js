@@ -238,9 +238,8 @@ function settingsToggle(nameId, units) {
     if ($('.' + nameId).length > 0) {
         $(".optionalInfo ." + nameId + ", .optionalInfo1 ." + nameId + ", .optionalInfo2 ." + nameId + ", .optionalInfo3 ." + nameId).show();
     } else {
-        if(nameId==="precipitation"){
+        if(nameId === "precipitation"){
             insertRain();
-            alert("settTogg");
         }else{
             $(".optionalInfo").append(eval(nameId).clone());
             $(".optionalInfo1").append(eval(nameId).clone());
@@ -267,7 +266,7 @@ function WeekDay() {
         weekday[7] = "Sunday";
         weekday[8] = "Monday";
         weekday[9] = "Tuesday";
-        var n = weekday[d.getDay() + i + 1];
+        var n = weekday[d.getDay() + i + 2];
         x = x + 1;
         document.getElementById('weekday' + x).innerHTML = n;
     }
@@ -369,31 +368,34 @@ function insertTemperature() {
 }
 // Insert temperature - END
 
+var rainAC;
 // Insert rain
 function insertRain() {
-    console.log("insert rain");
     setTimeout(function () {
-        if ($("#precipitation input:checked").length) {
-            console.log("if");
-//            insertInHtml(tempC + "°", ".degrees");
-            if( $('#day0').is(':empty') ) {
-                rainDay = "day" + 0;
-                //if (rain > 0.9) {          //denne er vist ikke day0s værdi, men day3
-                    if (rain > 40) {
-                        rain = 40;
+        for (d = 0; d < 5; d++) {
+            if ($("#precipitation input:checked").length) {
+    //            insertInHtml(tempC + "°", ".degrees");
+                if( $('#day'+d).is(':empty') ) {
+                    rainDay = "day" + d;
+                    rainAC = eval("rainAC"+d);
+                    console.log(rainAC);
+                    if (rainAC > 0.9) {          //denne er vist ikke day0s værdi, men day3
+                        if (rainAC > 40) {
+                            rainAC = 40;
+                        }
+                        new Rain(rainDay, {
+                            angle: 3,
+                            intensity: rainAC
+                        });
                     }
-                    new Rain(rainDay, {
-                        angle: 3,
-                        intensity: 10
-                    });
-                //}
-            }else{
-                $(".precipitation2").show();
-                console.info("Let it rain!");
+                }else{
+                    $(".precipitation2").show();
+                    console.info("Show rain!");
+                }
+            } else {
+                $("#day0 svg").hide();
+                console.info("Stahp!");
             }
-        } else {
-            $("#day0 svg").hide();
-            console.info("Stahp!");
         }
     }, 50);
 }
@@ -418,9 +420,6 @@ function clickEvents() {
     });
     $("#degree label").click(function () {
         insertTemperature();
-    });
-    $("#precipitation label").click(function () {
-        //insertRain();
     });
     searchBar();
 }

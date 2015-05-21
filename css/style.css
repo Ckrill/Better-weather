@@ -114,7 +114,7 @@ ul#bullets {
     position: absolute;
     width: 100%;
 }
-#day0{
+#day0, #day1, #day2, #day3{
     position: absolute;
     width: 100%;
     height: 100%;
