@@ -4,35 +4,68 @@
 
 // Settings
 var breakpoint = 1023, // unit in px
+    days = 4, // Number of days the app is showing
 
 // Settings - END
 
 // Vars for weather API
-    tempC,
+    // Temerature
+    tempC0,
     tempC1,
     tempC2,
     tempC3,
-    tempF,
+    tempF0,
     tempF1,
     tempF2,
     tempF3,
-    winddir,
-    winddirABB,
-    windchillC,
-    windchillF,
-    windspeed,
-    uv,
-    sunrise,
-    sunset,
-    rain1, //slet?
-    rain2,
-    rain3,
-    rain4,
-    rain5,
-    rain6,
-    rain7,
-    rain8,
-    rain,
+    
+    // Wind
+    winddir0,
+    winddir1,
+    winddir2,
+    winddir3,
+    
+    winddirABB0,
+    winddirABB1,
+    winddirABB2,
+    winddirABB3,
+    
+    windchillC0,
+    windchillC1,
+    windchillC2,
+    windchillC3,
+    windchillF0,
+    windchillF1,
+    windchillF2,
+    windchillF3,
+    
+    windspeedC0,
+    windspeedC1,
+    windspeedC2,
+    windspeedC3,
+    windspeedF0,
+    windspeedF1,
+    windspeedF2,
+    windspeedF3,
+    
+    // UV Index
+    uv0,
+    uv1,
+    uv2,
+    uv3,
+    
+    // Sunrise / Sunset
+    sunrise0,
+    sunrise1,
+    sunrise2,
+    sunrise3,
+    
+    sunset0,
+    sunset1,
+    sunset2,
+    sunset3,
+    
+    // Rain
     rainAC0 = 0,
     rainAC1 = 0,
     rainAC2 = 0,
@@ -164,54 +197,41 @@ function parsePosition(position) {
             insertInHtml(location, ".location");
             
             // Weather
-            
-            // Today 
-            tempC = json.data.weather[0].maxtempC;
-            tempF = json.data.weather[0].maxtempF;
-            //wind = json.data.weather[0].hourly[4].windspeedKmph;
-            winddir = json.data.weather[0].hourly[4].winddirDegree;
-            winddirABB = json.data.weather[0].hourly[4].winddir16Point;
-            windchillC = json.data.weather[0].hourly[4].WindChillC;
-            windchillF = json.data.weather[0].hourly[4].WindChillF;
-            windspeed = json.data.weather[0].hourly[4].windspeedKmph;
-            windspeed = (windspeed * 1000) / 3600; // m/s
-            uv = json.data.weather[0].uvIndex;
-            sunrise = json.data.weather[0].astronomy[0].sunrise;
-            sunset = json.data.weather[0].astronomy[0].sunset;
-            
-//            rainAC0 = 0;
-//            rainAC1 = 0;
-//            rainAC2 = 0;
-//            rainAC3 = 0;
-            var rainDay,
-                rainHour;
-            for (d = 0; d < 4; d++) {
-                for (i = 0; i < 8; i++) {
-                    rainHour = json.data.weather[d].hourly[i].precipMM;
-                    eval("rainAC" + d + "+=" + Number(rainHour) + ";");
-                }
-                rain = eval("rainAC" + d);
-                rainDay = "day" + d;
+            for (d = 0; d < days; d++) {
+                eval("tempC" + d + " = json.data.weather[" + d + "].maxtempC;");
+                eval("tempF" + d + " = json.data.weather[" + d + "].maxtempF;");
                 
+                eval("sunrise" + d + " = json.data.weather[" + d + "].astronomy[0].sunrise;");
+                eval("sunset" + d + " = json.data.weather[" + d + "].astronomy[0].sunset;");
+                eval("uv" + d + " = json.data.weather[" + d + "].uvIndex;");
+                
+                eval("windspeedK" + d + " = json.data.weather[" + d + "].hourly[4].windspeedKmph;");
+                eval("windspeedK" + d + " =  + (windspeedK" + d + " * 1000) / 3600;"); // m/s
+                eval("windspeedM" + d + " = json.data.weather[" + d + "].hourly[4].windspeedMiles;");
+//                eval("windspeedM" + d + " =  + (windspeedK" + d + " * 1000) / 3600;"); // m/s // This should be changed to miles, but what do Americans use?
+                
+                eval("windchillC" + d + " = json.data.weather[" + d + "].hourly[4].WindChillC;");
+                eval("windchillF" + d + " = json.data.weather[" + d + "].hourly[4].WindChillF;");
+                
+                eval("winddir" + d + " = json.data.weather[" + d + "].hourly[4].winddirDegree;");
+                eval("winddirABB" + d + " = json.data.weather[" + d + "].hourly[4].winddir16Point;");
             }
             
-            // Day 1
-            tempC1 = json.data.weather[1].maxtempC;
-            tempF1 = json.data.weather[1].maxtempF;
-            
-            // Day 2
-            tempC2 = json.data.weather[2].maxtempC;
-            tempF2 = json.data.weather[2].maxtempF;
-            
-            // Day 3
-            tempC3 = json.data.weather[3].maxtempC;
-            tempF3 = json.data.weather[3].maxtempF;
+            var rainDay,
+                rainHour;
+            for (d = 0; d < days; d++) {
+                for (i = 0; i < 8; i++) {
+                    rainHour = json.data.weather[d].hourly[i].precipMM;
+                    eval("rainAC" + d + " += " + Number(rainHour) + ";");
+                }
+                rainDay = "day" + d;
+            }
             
             initiateSetting();
             insertTemperature();
             
-            for (d = 0; d < 4; d++) { // Insert rain
-                insertInHtml(Math.round(eval("rainAC" + d)) + " mm", "#precipitation" + d);
+            for (d = 0; d < days; d++) { // Insert rain
+                insertInHtml(Math.floor(eval("rainAC" + d)) + " mm", "#precipitation" + d);
             }
              
         } else {
@@ -230,24 +250,22 @@ function insertInHtml(variable, id) {
 //Insert data - END
 
 function settingsToggle(nameId, units) {
-    var uvIndex = $('<div class="uvIndex"><div class="graphic"><img class="speedometer" src="img/speedometer.svg"><img class="speedometer-pin" src="img/speedometer-pin.svg" style="transform: rotate(' + (110 + (uv * 20)) + 'deg);"></div><div class="text">UV Index</div></div>'),
-        sun = $('<div class="sun"><div class="graphic"><img src="img/sunUpDown.svg"></div><div class="sunrise text">' + sunrise + '</div><div class="sunset text">' + sunset + '</div></div>'),
-        windSpeed = $('<div class="windSpeed"><div class="graphic"><img class="fan" src="img/fan.svg" style="animation-duration: ' + (8 / windspeed) + 's; -webkit-animation-duration: ' + (8 / windspeed) + 's;"></div><div class="text">' + Math.round(windspeed) + ' m/s</div></div>'),
-        windDir = $('<div class="windDir"><div class="graphic"><img class="compass" src="img/winddir.svg"><img class="pin" src="img/pin.svg" style="-webkit-transform: rotate(' + winddir + 'deg); -moz-transform: rotate(' + winddir + 'deg); -ms-transform: rotate(' + winddir + 'deg); transform: rotate(' + winddir + 'deg);"></div><span class="text">' + winddirABB + '</span></div>'),
-        windChill = $('<div class="windChill"><div class="text">Feels like</div><div class="windChillTemp">' + eval("windchill" + units) + '°</div></div>');
-    if ($('.' + nameId).length > 0) {
-        $(".optionalInfo ." + nameId + ", .optionalInfo1 ." + nameId + ", .optionalInfo2 ." + nameId + ", .optionalInfo3 ." + nameId).show();
-    } else {
-        if(nameId === "precipitation"){
-            insertRain();
-        }else{
-            $(".optionalInfo").append(eval(nameId).clone());
-            $(".optionalInfo1").append(eval(nameId).clone());
-            $(".optionalInfo2").append(eval(nameId).clone());
-            $(".optionalInfo3").append(eval(nameId).clone());
+    for (d = 0; d < days; d++) {
+        var uvIndex = $('<div class="uvIndex"><div class="graphic"><img class="speedometer" src="img/speedometer.svg"><img class="speedometer-pin" src="img/speedometer-pin.svg" style="transform: rotate(' + (110 + (eval("uv" + d) * 20)) + 'deg);"></div><div class="text">UV Index</div></div>'),
+            sun = $('<div class="sun"><div class="graphic"><img src="img/sunUpDown.svg"></div><div class="sunrise text">' + eval("sunrise" + d) + '</div><div class="sunset text">' + eval("sunset" + d) + '</div></div>'),
+            windSpeed = $('<div class="windSpeed"><div class="graphic"><img class="fan" src="img/fan.svg" style="animation-duration: ' + (8 / eval("windspeedK" + d)) + 's; -webkit-animation-duration: ' + (8 / eval("windspeedK" + d)) + 's;"></div><div class="text">' + Math.round(eval("windspeedK" + d)) + ' m/s</div></div>'),
+            windDir = $('<div class="windDir"><div class="graphic"><img class="compass" src="img/winddir.svg"><img class="pin" src="img/pin.svg" style="-webkit-transform: rotate(' + eval("winddir" + d) + 'deg); -moz-transform: rotate(' + eval("winddir" + d) + 'deg); -ms-transform: rotate(' + eval("winddir" + d) + 'deg); transform: rotate(' + eval("winddir" + d) + 'deg);"></div><span class="text">' + eval("winddirABB" + d) + '</span></div>'),
+            windChill = $('<div class="windChill"><div class="text">Feels like</div><div class="windChillTemp">' + eval("windchill" + units + d) + '°</div></div>');
+        if ($(".optionalInfo" + d + " ." + nameId).length > 0) {
+            $(".optionalInfo" + d + " ." + nameId).show();
+        } else {
+            if (nameId === "precipitation") {
+                insertRain();
+            } else {
+                $(".optionalInfo" + d).append(eval(nameId).clone());
+            }
         }
     }
-        
 }
 
 // Weekday handler
@@ -351,17 +369,23 @@ function settingsIcon() {
 function insertTemperature() {
     setTimeout(function () {
         if ($("#degree input:checked").length) {
-            insertInHtml(tempF + "°", ".degrees");
+            insertInHtml(tempF0 + "°", ".degrees");
             insertInHtml(tempF1 + "°", "#degrees1");
             insertInHtml(tempF2 + "°", "#degrees2");
             insertInHtml(tempF3 + "°", "#degrees3");
-            insertInHtml(windchillF + "°", ".windChillTemp");
+//            insertInHtml(windchillF0 + "°", ".windChillTemp");
+//            insertInHtml(windchillF1 + "°", ".windChillTemp");
+//            insertInHtml(windchillF2 + "°", ".windChillTemp");
+//            insertInHtml(windchillF3 + "°", ".windChillTemp");
         } else {
-            insertInHtml(tempC + "°", ".degrees");
+            insertInHtml(tempC0 + "°", ".degrees");
             insertInHtml(tempC1 + "°", "#degrees1");
             insertInHtml(tempC2 + "°", "#degrees2");
             insertInHtml(tempC3 + "°", "#degrees3");
-            insertInHtml(windchillC + "°", ".windChillTemp");
+//            insertInHtml(windchillC0 + "°", ".windChillTemp");
+//            insertInHtml(windchillC1 + "°", ".windChillTemp");
+//            insertInHtml(windchillC2 + "°", ".windChillTemp");
+//            insertInHtml(windchillC3 + "°", ".windChillTemp");
         }
     }, 50);
 }

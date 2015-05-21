@@ -1,8 +1,8 @@
 @media screen and (min-width: 640px) {
-    .optionalInfo .text {
+    .optionalInfo0 .text {
         font-size: 1rem;
     }
-    .optionalInfo .windChillTemp {
+    .optionalInfo0 .windChillTemp {
         font-size: 3rem;
     }
 }
@@ -22,7 +22,7 @@
     #settings .backBtn {
         display: block;
     }
-    .optionalInfo {
+    .optionalInfo0 {
         width: 75%;
         max-width: 500px;
     }
@@ -37,10 +37,10 @@
         font-size: 1rem;
     }
 */
-    .optionalInfo .text {
+    .optionalInfo0 .text {
         font-size: 1rem;
     }
-    .optionalInfo .windChillTemp {
+    .optionalInfo0 .windChillTemp {
         font-size: 3rem;
     }
 }
