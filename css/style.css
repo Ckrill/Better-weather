@@ -123,4 +123,7 @@ ul#bullets {
     top: 0;
     left: 0;
 }
+.units {
+    font-size: .5em;
+}
 /* Interface - END */

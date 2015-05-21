@@ -231,7 +231,7 @@ function parsePosition(position) {
             insertTemperature();
             
             for (d = 0; d < days; d++) { // Insert rain
-                insertInHtml(Math.floor(eval("rainAC" + d)) + " mm", "#precipitation" + d);
+                insertInHtml(Math.floor(eval("rainAC" + d)) + "<span class='units'>mm</span>", "#precipitation" + d);
             }
              
         } else {
@@ -245,7 +245,7 @@ function parsePosition(position) {
 
 //Insert data
 function insertInHtml(variable, id) {
-    $(id).text(variable);
+    $(id).html(variable);
 }
 //Insert data - END
 
@@ -373,19 +373,11 @@ function insertTemperature() {
             insertInHtml(tempF1 + "°", "#degrees1");
             insertInHtml(tempF2 + "°", "#degrees2");
             insertInHtml(tempF3 + "°", "#degrees3");
-//            insertInHtml(windchillF0 + "°", ".windChillTemp");
-//            insertInHtml(windchillF1 + "°", ".windChillTemp");
-//            insertInHtml(windchillF2 + "°", ".windChillTemp");
-//            insertInHtml(windchillF3 + "°", ".windChillTemp");
         } else {
             insertInHtml(tempC0 + "°", ".degrees");
             insertInHtml(tempC1 + "°", "#degrees1");
             insertInHtml(tempC2 + "°", "#degrees2");
             insertInHtml(tempC3 + "°", "#degrees3");
-//            insertInHtml(windchillC0 + "°", ".windChillTemp");
-//            insertInHtml(windchillC1 + "°", ".windChillTemp");
-//            insertInHtml(windchillC2 + "°", ".windChillTemp");
-//            insertInHtml(windchillC3 + "°", ".windChillTemp");
         }
     }, 50);
 }
