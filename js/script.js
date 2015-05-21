@@ -311,7 +311,6 @@ function checkboxCheck() {
             localStorage.setItem(nameId, "0");
             $('.' + nameId).hide();
             $('.' + nameId+'2').hide();
-            alert("hide please");
         }
     });
 }
