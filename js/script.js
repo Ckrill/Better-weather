@@ -235,7 +235,7 @@ function parsePosition(position) {
                 rainDay = "day" + d;
                 eval("rainACC" + d + " += " + "Math.round(rainAC" + d + " * 100) / 100;");
                 eval("rainACF" + d + " += Math.round(rainAC" + d + "/25.4 * 100) / 100;");
-                console.log(eval("rainAC"+d));
+//                console.log(eval("rainAC"+d));
             }
             
             initiateSetting();
