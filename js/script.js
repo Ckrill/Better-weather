@@ -70,6 +70,14 @@ var breakpoint = 1023, // unit in px
     rainAC1 = 0,
     rainAC2 = 0,
     rainAC3 = 0;
+    rainACC0 = 0,
+    rainACC1 = 0,
+    rainACC2 = 0,
+    rainACC3 = 0;
+    rainACF0 = 0,
+    rainACF1 = 0,
+    rainACF2 = 0,
+    rainACF3 = 0;
     
 // Vars for weather API - END
 
@@ -225,6 +233,9 @@ function parsePosition(position) {
                     eval("rainAC" + d + " += " + Number(rainHour) + ";");
                 }
                 rainDay = "day" + d;
+                eval("rainACC" + d + " += " + "Math.round(rainAC" + d + " * 100) / 100;");
+                eval("rainACF" + d + " += Math.round(rainAC" + d + "/25.4 * 100) / 100;");
+                console.log(eval("rainAC"+d));
             }
             
             initiateSetting();
@@ -373,9 +384,11 @@ function insertTemperature() {
             if ($("#degree input:checked").length) {
                 insertInHtml(eval("tempF" + d) + "°", "#degrees" + d);
                 insertInHtml(eval("windchillF" + d), ".optionalInfo" + d + " .windChillTemp");
+                insertInHtml(eval("rainACF" + d) + "<span class='units'> in</span>", " #precipitation" + d);
             } else {
                 insertInHtml(eval("tempC" + d) + "°", "#degrees" + d);
                 insertInHtml(eval("windchillC" + d), ".optionalInfo" + d + " .windChillTemp");
+                insertInHtml(eval("rainACC" + d) + "<span class='units'> mm</span>", " #precipitation" + d);
             }
         }
     }, 50);
