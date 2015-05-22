@@ -129,7 +129,7 @@ function loadingAnimation() {
 function setSlideHeight() {
     var windowHeight = $(window).height();
     if ($(window).width() > breakpoint) {
-        $(".page").css("height", (windowHeight - 52) + "px");
+        $(".page").css("height", (windowHeight - 57) + "px");
     } else {
         $(".page").css("height", (windowHeight) + "px");
     }
@@ -158,6 +158,7 @@ function getLocation() {
     if (window.location.hash) {
         parsePosition();
     } else {
+        insertInHtml("Getting your location", "#loadingStatus");
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(parsePosition);
         } else {
@@ -169,6 +170,7 @@ function getLocation() {
 
 //Parse position
 function parsePosition(position) {
+    insertInHtml("Getting weather conditions", "#loadingStatus");
     var wwo = "http://api.worldweatheronline.com/free/v2/weather.ashx?q=",
         mode = "&format=json&num_of_days=4&includelocation=yes",
         key =  "&key=82594deb029ae9095181418b6edfd";
@@ -177,10 +179,10 @@ function parsePosition(position) {
             url = wwo + query + mode + key;
         $("#searchInput").val(window.location.hash.replace("#", ""));
     } else {
-        var /*lati = position.coords.latitude,
+        var lati = position.coords.latitude,
         longi = position.coords.longitude,
-        url = wwo+ lati+","+longi+mode+key; */
-        url = wwo + 55.654385 + "," + 12.5915103 + mode + key;  //For developments purposes
+        url = wwo + lati + "," + longi + mode + key;
+//        var url = wwo + 55.654385 + "," + 12.5915103 + mode + key;  //For developments purposes
     }
 
     $.getJSON(url, function (json) {
@@ -337,7 +339,7 @@ function initiateSetting() {
     var myStringArray = ["degree", "precipitation", "uvIndex", "windDir", "windChill", "windSpeed", "sun"],
         arrayLength = myStringArray.length;
     for (var i = 0; i <= arrayLength; i++) {
-        if (localStorage.getItem(myStringArray[i]) == "true"){
+        if (localStorage.getItem(myStringArray[i]) == "true") {
             $('#' + myStringArray[i] + ' input').prop('checked', true);
             if ($('#' + myStringArray[i]).hasClass("trueFalse")) {
                 var units = "C";
@@ -347,6 +349,13 @@ function initiateSetting() {
                     units = "C";
                 }
                 settingsToggle(myStringArray[i], units);
+            }
+        } else { // First time users will have following default settings turned on
+            if (myStringArray[i] === "uvIndex" ||
+               myStringArray[i] === "windChill" ||
+               myStringArray[i] === "windSpeed") {
+                $('#' + myStringArray[i] + ' input').prop('checked', true);
+                settingsToggle(myStringArray[i], "C");
             }
         }
     }
@@ -461,7 +470,8 @@ $(document).ready(function () {
     setSlideHeight();
     setSlideWidth();
     initiateBullets();
-    parsePosition(); // getLocation(); For developments purposes
+//    parsePosition(); // For developments purposes
+    getLocation();
     WeekDay();
     checkboxCheck();
     clickEvents();

@@ -9,7 +9,7 @@
 
 .location {
     line-height: 1em;
-    padding: 1em 0 .5em 0;
+    padding: 2.3em 0 .5em 0;
 }
 .desktopMode #today {
     width: 50%;
@@ -58,7 +58,7 @@
     position: absolute;
     right: 0;
     bottom: 0;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     padding-right: 20px;
     padding-left: 20px;
     width: 100%;
@@ -71,7 +71,6 @@
 .optionalInfo3 {
     position: relative;
     width: 100%;
-/*    max-width: 300px;*/
     float: right;
 }
 .optionalInfo1 > div,
@@ -219,7 +218,7 @@
     to {transform:rotate(360deg);}
 }
 .hashtag #searchForm span{
-    top: 15px;
+    top: 19px;
     cursor: pointer;
     text-indent: 15px;
     left: 15px;
