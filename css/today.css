@@ -8,7 +8,8 @@
 }
 
 .location {
-    margin-top: 50px;
+    line-height: 1em;
+    padding: 1em 0 .5em 0;
 }
 .desktopMode #today {
     width: 50%;
@@ -30,8 +31,8 @@
 #today .settingsIcon.active:hover {
     transform: rotate(120deg) !important;
 }
-.permanentInfo {
-    
+#today .permanentInfo {
+    padding: 20px 0;
 }
 
 #degrees0,
