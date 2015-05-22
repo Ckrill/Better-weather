@@ -470,6 +470,9 @@ function clickEvents() {
     });
     searchBar();
     resetSliderPage();
+    $(".overlay").click(function () {
+        $('.slide-container').slick("slickGoTo", 1);
+    });
 }
 // Click - END
 
