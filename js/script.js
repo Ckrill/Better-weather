@@ -339,7 +339,7 @@ function initiateSetting() {
     var myStringArray = ["degree", "precipitation", "uvIndex", "windDir", "windChill", "windSpeed", "sun"],
         arrayLength = myStringArray.length;
     for (var i = 0; i <= arrayLength; i++) {
-        if (localStorage.getItem(myStringArray[i]) == "true") {
+        if (localStorage.getItem(myStringArray[i]) === "true") {
             $('#' + myStringArray[i] + ' input').prop('checked', true);
             if ($('#' + myStringArray[i]).hasClass("trueFalse")) {
                 var units = "C";
@@ -350,10 +350,10 @@ function initiateSetting() {
                 }
                 settingsToggle(myStringArray[i], units);
             }
-        } else { // First time users will have following default settings turned on
-            if (myStringArray[i] === "uvIndex" ||
+        } else if (myStringArray[i] === "uvIndex" ||
                myStringArray[i] === "windChill" ||
                myStringArray[i] === "windSpeed") {
+            if (localStorage.getItem(myStringArray[i]) !== "0") { // First time users will have following default settings turned on
                 $('#' + myStringArray[i] + ' input').prop('checked', true);
                 settingsToggle(myStringArray[i], "C");
             }
