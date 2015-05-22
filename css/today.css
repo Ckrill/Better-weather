@@ -70,8 +70,13 @@
 .optionalInfo3 {
     position: relative;
     width: 100%;
-    max-width: 300px;
+/*    max-width: 300px;*/
     float: right;
+}
+.optionalInfo1 > div,
+.optionalInfo2 > div,
+.optionalInfo3 > div {
+    max-width: 90px;
 }
 .optionalInfo0:after,
 .optionalInfo1:after,

@@ -1,10 +1,10 @@
 /* Future */
 .futureDay {
-    height: calc(100% / 3);
+    min-height: calc(100% / 3);
     border-bottom: 1px solid #3A7BB3;
     border-left: 1px solid #3A7BB3;
     
-    display: table;
+/*    display: table;*/
     position: relative;
     width: 100%;
     font-size: 22px;
@@ -13,14 +13,30 @@
     border-bottom: 0; 
 }
 .valign{
-    display: table-cell;
+/*    display: table-cell;*/
     vertical-align: middle;
     padding: 20px;
 }
 .valign p{
     margin: 0;
 }
-.desktopMode #future{
+.permanentInfo {
+    padding: 20px;
+}
+.permanentInfo p {
+    margin: 0;
+}
+.optionalInfo1,
+.optionalInfo2,
+.optionalInfo3 {
+    padding: 0 20px 20px 20px;
+}
+.futureDay {
+    clear: both;
+    content: "";
+    display: table;
+}
+.desktopMode #future {
     width: 50%;
     float: left;    
 }
