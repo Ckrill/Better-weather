@@ -447,6 +447,19 @@ function keyboardCheck() {
 }
 // Mobile Keyboard resize fix -END
 
+function resetSliderPage() {
+    $('.slide-container').on('afterChange', function (event, slick, direction) {
+        if ($(window).width() > breakpoint) {
+            var currentSlide = $('.slide-container').slick("slickCurrentSlide");
+            if (currentSlide === 2) {
+                setTimeout(function () {
+                    $('.slide-container').slick("slickGoTo", 1);
+                }, 50);
+            }
+        }
+    });
+}
+
 // Click
 function clickEvents() {
     $(".settingsIcon").click(function () {
@@ -456,6 +469,7 @@ function clickEvents() {
         insertTemperature();
     });
     searchBar();
+    resetSliderPage();
 }
 // Click - END
 
