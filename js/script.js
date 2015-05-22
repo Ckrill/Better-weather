@@ -229,7 +229,10 @@ function parsePosition(position) {
              
         } else {
             insertInHtml("Couldn't find your location", ".location");
-            insertInHtml(":(", ".degrees");
+            insertInHtml(":", "#degrees0");
+            insertInHtml(":", "#degrees1");
+            insertInHtml(":", "#degrees2");
+            insertInHtml(":", "#degrees3");
         }
         $(".loadingScreen").fadeOut();
     });
