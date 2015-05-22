@@ -10,6 +10,9 @@
     #bullets{
         display: none;
     }
+    #today {
+        font-size: 2.25rem;
+    }
     #today .settingsIcon{
         display: block;
     }

@@ -1,6 +1,6 @@
 /* Today */
 #today {
-    font-size: 38px;
+    font-size: 1.75rem;
     padding: 20px;
     height: 100%;
     width: 100%;
@@ -165,9 +165,9 @@
     position: absolute;
     cursor: pointer;
     top: 10px;
-    right: 10px;
+    right: 20px;
     width: 40px;
-    height: 30px;
+    height: auto;
 }
 .loadingScreen {
     position: absolute;
