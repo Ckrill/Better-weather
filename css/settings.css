@@ -20,13 +20,13 @@ h2 {
 /*    position: relative;*/
     margin: 1em 0;
 }
-.setting form {
+.setting .tglContainer {
     position: relative;
     float: right;
     margin-left: 30px;
     padding-right: 20px;
 }
-.setting:not(.trueFalse) form {
+.setting:not(.trueFalse) .tglContainer {
     padding-left: 20px;
 }
 #settings p {
@@ -35,18 +35,18 @@ h2 {
     float: left;
     line-height: 2em;
 }
-.setting form:before,
-.setting form:after {
+.setting .tglContainer:before,
+.setting .tglContainer:after {
     position: absolute;
     top: 0;
     line-height: 2em;
 }
 /* Degree setting */
-#degree form:before {
+#degree .tglContainer:before {
     content: "°C";
     left: 0;
 }
-#degree form:after {
+#degree .tglContainer:after {
     content: "°F";
     right: 0;
 }
