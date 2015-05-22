@@ -17,7 +17,6 @@ h2 {
 .setting {
     font-size: 1rem;
     height: 2em;
-/*    position: relative;*/
     margin: 1em 0;
 }
 .setting .tglContainer {
@@ -50,21 +49,6 @@ h2 {
     content: "°F";
     right: 0;
 }
-/* Degree setting - END */
-
-/* Wind force */
-/*
-#windSpeed form:before {
-    content: "Yes";
-    left: -20px;
-}
-#windSpeed form:after {
-    content: "No";
-    right: -20px;
-}
-*/
-/* Wind force - END */
-
 #settForm {
     display: inline-block;
     font-size: 1em;
@@ -109,7 +93,6 @@ h2 {
 .tgl:checked + .tgl-btn:after {
     left: 50%;
 }
-
 img.backBtn{
     position: absolute;
     bottom: 20px;
@@ -118,9 +101,7 @@ img.backBtn{
     cursor: pointer;
     opacity: 0.3;
 }
-
 .tgl-btn {
-/*    background: #f0f0f0;*/
     background-color: #4b4b4b;
     border-radius: 2em;
     padding: 2px;
@@ -132,7 +113,6 @@ img.backBtn{
         transition: all .2s ease;
     }
 .trueFalse .tgl-light:checked + .tgl-btn {
-/*    background: #9FD6AE;*/
     background-color: #71a880;
 }
 /* Styled checkboxes - END */

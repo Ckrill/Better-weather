@@ -7,9 +7,7 @@
 /* General */
 *{
     box-sizing: border-box;
-
 }
-
 body {
     font-size: 100%;
     font-family: 'Source Sans Pro', sans-serif;
@@ -22,7 +20,6 @@ body {
     position: absolute;
     height: 100%;
     width: 100%;
-    
     transition: 0.4s -webkit-filter linear;
 }
 .page {
@@ -30,10 +27,9 @@ body {
     overflow-y: auto;
     overflow-x: hidden;
     position: relative;
-    /*-webkit-backface-visibility: hidden;
+    /*-webkit-backface-visibility: hidden; //Causes bugs in Chrome and Firefox
     backface-visibility: hidden;*/
 }
-
 /* General - END */
 
 /* Interface */
@@ -81,7 +77,6 @@ ul#bullets {
 #bullets .active {
     opacity: .7;
 }
-
 #searchForm {
     top: -52px;
     position: absolute;
@@ -105,14 +100,12 @@ ul#bullets {
     color: lightgrey;
     font-weight: 600;
 }
-
 #searchForm.searchActive {
     top: 0;
 }
 #submit{
     display: none;
 }
-
 #today svg:first-child, .futureDay svg:first-child {
     position: absolute;
     width: 100%;
@@ -142,12 +135,12 @@ div.overlay{
     left: 0;
     top: 0;
     cursor: pointer;
-    transition: background 1s 0s, height 0s 1s;
+    transition: background 0.3s 0s, height 0s 0.3;
 }
 [data-slick-index="0"].slick-active ~ .slick-slide > #today + .overlay,
 [data-slick-index="0"].slick-active ~ .slick-slide > #future + .overlay {
     height: 100%;
     background: rgba(0,0,0,0.3);
-    transition: background 1s 0s;
+    transition: background 0.3s 0s;
 }
 /* Interface - END */

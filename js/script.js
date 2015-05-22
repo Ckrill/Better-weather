@@ -66,6 +66,7 @@ var breakpoint = 1023, // unit in px
     sunset3,
     
     // Rain
+    rainAC,
     rainAC0 = 0,
     rainAC1 = 0,
     rainAC2 = 0,
@@ -87,19 +88,9 @@ function initiateSlide() {
         initialSlide: 1,
         arrows: false,
         infinite: false,
-//        swipe: false,
         swipe: true,
         accessibility: false,
         variableWidth: true
-//        variableWidth: true,
-//        responsive: [
-//            {
-//                breakpoint: breakpoint + 1,
-//                settings: {
-//                    swipe: true
-//                }
-//            }
-//        ]
     });
 }
 // Initiate slider - END
@@ -137,7 +128,6 @@ function loadingAnimation() {
 // Set height of Slider
 function setSlideHeight() {
     var windowHeight = $(window).height();
-//    console.log(windowHeight);
     if ($(window).width() > breakpoint) {
         $(".page").css("height", (windowHeight - 52) + "px");
     } else {
@@ -187,21 +177,19 @@ function parsePosition(position) {
             url = wwo + query + mode + key;
         $("#searchInput").val(window.location.hash.replace("#", ""));
     } else {
-        var /*lati = position.coords.latitude,
+        var lati = position.coords.latitude,
         longi = position.coords.longitude,
-        url = wwo+ lati+","+longi+mode+key; */
-        url = wwo + 55.654385 + "," + 12.5915103 + mode + key;
+        url = wwo+ lati+","+longi+mode+key; 
+        //url = wwo + 55.654385 + "," + 12.5915103 + mode + key;  //For developments purposes
     }
 
     $.getJSON(url, function (json) {
-//        console.log(json);
         if (!json.data.hasOwnProperty('error')) {
             
             // Location
             var cityName = json.data.nearest_area[0].areaName[0].value,
                 country = json.data.nearest_area[0].country[0].value,
                 location = cityName + ", " + country;
-            
             insertInHtml(location, ".location");
             
             // Weather
@@ -216,7 +204,6 @@ function parsePosition(position) {
                 eval("windspeedC" + d + " = json.data.weather[" + d + "].hourly[4].windspeedKmph;");
                 eval("windspeedC" + d + " =  + (windspeedC" + d + " * 1000) / 3600;"); // m/s
                 eval("windspeedF" + d + " = json.data.weather[" + d + "].hourly[4].windspeedMiles;");
-//                eval("windspeedM" + d + " =  + (windspeedK" + d + " * 1000) / 3600;"); // m/s // This should be changed to miles, but what do Americans use?
                 
                 eval("windchillC" + d + " = json.data.weather[" + d + "].hourly[4].WindChillC;");
                 eval("windchillF" + d + " = json.data.weather[" + d + "].hourly[4].WindChillF;");
@@ -224,7 +211,6 @@ function parsePosition(position) {
                 eval("winddir" + d + " = json.data.weather[" + d + "].hourly[4].winddirDegree;");
                 eval("winddirABB" + d + " = json.data.weather[" + d + "].hourly[4].winddir16Point;");
             }
-            
             var rainDay,
                 rainHour;
             for (d = 0; d < days; d++) {
@@ -235,14 +221,10 @@ function parsePosition(position) {
                 rainDay = "day" + d;
                 eval("rainACC" + d + " += " + "Math.round(rainAC" + d + " * 100) / 100;");
                 eval("rainACF" + d + " += Math.round(rainAC" + d + "/25.4 * 100) / 100;");
-//                console.log(eval("rainAC"+d));
-            }
-            
+            }  
             initiateSetting();
             insertTemperature();
-            
             for (d = 0; d < days; d++) { // Insert rain
-//                insertInHtml(Math.floor(eval("rainAC" + d)) + "<span class='units'> mm</span>", "#precipitation" + d);
             }
              
         } else {
@@ -329,10 +311,8 @@ function checkboxCheck() {
     $('.setting input').change(function () {
         var value = this.checked ? 'true' : 'false',
             nameId = $(this).parents('.setting').attr('id');
-//        console.log(nameId);
         if (value === "true") {
             localStorage.setItem(nameId, "true");
-//            eval('' + nameId + '(nameId1)');
             if ($('#' + nameId).hasClass("trueFalse")) {
                 var units = "C";
                 if ($("#degree input:checked").length) {
@@ -402,18 +382,15 @@ function insertTemperature() {
 }
 // Insert temperature - END
 
-var rainAC;
 // Insert rain
 function insertRain() {
     setTimeout(function () {
         for (d = 0; d < 5; d++) {
             if ($("#precipitation input:checked").length) {
-    //            insertInHtml(tempC + "°", ".degrees");
                 if( $('#day'+d).is(':empty') ) {
                     rainDay = "day" + d;
                     rainAC = eval("rainAC"+d);
-//                    console.log(rainAC);
-                    if (rainAC > 0.9) {          //denne er vist ikke day0s værdi, men day3
+                    if (rainAC > 0.9) {          
                         if (rainAC > 40) {
                             rainAC = 40;
                         }
@@ -424,11 +401,9 @@ function insertRain() {
                     }
                 }else{
                     $(".precipitation2").show();
-//                    console.info("Show rain!");
                 }
             } else {
                 $("#day0 svg").hide();
-//                console.info("Stahp!");
             }
         }
     }, 50);
@@ -483,31 +458,15 @@ $(document).ready(function () {
     setSlideHeight();
     setSlideWidth();
     initiateBullets();
-    parsePosition(); //getLocation();
+    getLocation(); //parsePosition(); For developments purposes
     WeekDay();
-//    moveFuture();
     checkboxCheck();
     clickEvents();
 });
 // Ready - END
 
-// Scroll
-$(window).scroll(function () {
-});
-// Scroll - END
-
-
 // Resize
 $(window).resize(function () {
     keyboardCheck();
-//    moveFuture();
 });
 //Resize - END
-
-// Arrow keys
-$(document).keyup(function (e) {
-	if (e.which === 40) { // Down
-        // Test here
-	}
-});
-// Arrow keys - END
