@@ -177,10 +177,10 @@ function parsePosition(position) {
             url = wwo + query + mode + key;
         $("#searchInput").val(window.location.hash.replace("#", ""));
     } else {
-        var lati = position.coords.latitude,
+        var /*lati = position.coords.latitude,
         longi = position.coords.longitude,
-        url = wwo+ lati+","+longi+mode+key; 
-        //url = wwo + 55.654385 + "," + 12.5915103 + mode + key;  //For developments purposes
+        url = wwo+ lati+","+longi+mode+key; */
+        url = wwo + 55.654385 + "," + 12.5915103 + mode + key;  //For developments purposes
     }
 
     $.getJSON(url, function (json) {
@@ -458,7 +458,7 @@ $(document).ready(function () {
     setSlideHeight();
     setSlideWidth();
     initiateBullets();
-    getLocation(); //parsePosition(); For developments purposes
+    parsePosition(); // getLocation(); For developments purposes
     WeekDay();
     checkboxCheck();
     clickEvents();
